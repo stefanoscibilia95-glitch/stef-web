@@ -18,5 +18,5 @@
 # number. Keep it out of the repo; it lives on your Mac and in Overleaf.
 SS_Academic_CV_*.zip
 
-# Full-resolution originals (the web-sized copies in images/ are committed)
-/_originals/
+# Full-resolution photo originals (the web-sized copies in images/ are committed)
+/_sources/originals/

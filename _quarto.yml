@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: _site
+  # Only .qmd files are pages. Without this, Quarto treats every .md in the
+  # project as an input and renders it into the site — CLAUDE.md would become
+  # a public page at /CLAUDE.html and show up in search and the sitemap.
+  render:
+    - "*.qmd"
   resources:
     - CNAME
     # SIL OFL 1.1 requires the licence to travel with the font wherever it is

@@ -47,11 +47,11 @@ impossible via citeproc. This is independent of BibTeX vs BibLaTeX; Quarto never
 
 **Two sources feed the page:**
 
-- `stef-biblatex.bib` — Zotero export, current work
-- `SS_Academic_CV_Sep_2025.zip` → `main.tex` — older items not in the bib
+- `_sources/stef-biblatex.bib` — Zotero export, current work
+- `_sources/SS_Academic_CV_Sep_2025.zip` → `main.tex` — older items not in the bib
   (the two NIG conference papers came from here)
 
-To refresh: export Zotero over `stef-biblatex.bib`, then ask Claude to re-read both and
+To refresh: export Zotero over `_sources/stef-biblatex.bib`, then ask Claude to re-read both and
 rewrite the sections.
 
 **House style**, so re-runs stay consistent:
@@ -80,7 +80,7 @@ August 2026, listed here in case they recur:
 - the EUSA entry's `url` held pasted text rather than a URL;
 - `pages = {35}` / `{34}` were page counts, not page ranges.
 
-**In the CV** (`SS_Academic_CV_Sep_2025.zip` → `main.tex`):
+**In the CV** (`_sources/SS_Academic_CV_Sep_2025.zip` → `main.tex`):
 
 - research team is written "Politics, Policy, and Society"; the correct name is
   **"Policy, Politics and Society"**, as on the EUR and Pure profiles;
@@ -94,7 +94,7 @@ August 2026, listed here in case they recur:
 ## Page-specific
 
 **index.qmd** — the photo `images/profile.jpg` was cropped and resized from a
-5909×5075 portrait by **M. Muus** (2023-10-23), archived in `_originals/` (underscore,
+5909×5075 portrait by **M. Muus** (2023-10-23), archived in `_sources/originals/` (underscore prefix,
 so not published). Credit the photographer if EUR's terms require it.
 
 The email uses Quarto's `about: links:`, but `styles.css` strips the button chrome so
