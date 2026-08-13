@@ -1,0 +1,55 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - CNAME
+    # SIL OFL 1.1 requires the licence to travel with the font wherever it is
+    # redistributed, and serving the .woff2 publicly counts as redistribution.
+    - fonts/OFL.txt
+
+website:
+  title: "Stefano Scibilia"
+  site-url: "https://stefanoscibilia.com"
+  description: "Academic homepage of Stefano Scibilia — research, teaching, and outreach."
+  favicon: images/favicon.png
+  search: true
+  back-to-top-navigation: true
+  # Without these, a link shared on Bluesky, X, LinkedIn or Slack renders as a
+  # bare URL with no title, summary or image. `image:` is the card thumbnail.
+  open-graph: true
+  twitter-card: true
+  image: images/profile.jpg
+  navbar:
+    # No brand text: it linked to the same place as Home. The site title above is
+    # still used for the browser tab, search index, and link previews.
+    title: false
+    left:
+      - href: index.qmd
+        text: Home
+      - href: research.qmd
+        text: Research
+      - href: teaching.qmd
+        text: Teaching
+      - href: outreach.qmd
+        text: Outreach
+      - href: contacts.qmd
+        text: Contacts
+
+  page-footer:
+    left: "© 2026 Stefano Scibilia"
+    right: "Made with [Quarto](https://quarto.org)"
+
+format:
+  html:
+    # styles.scss goes through the theme pipeline rather than a plain `css:` link,
+    # so Quarto compiles it into a content-hashed filename. That means an edit
+    # always produces a new URL and can never be served from a stale browser cache.
+    theme:
+      light: [cosmo, styles.scss]
+      dark: [darkly, styles.scss, dark.scss]
+    toc: true
+    toc-depth: 2
+    anchor-sections: true
+    smooth-scroll: true
+
+editor: visual

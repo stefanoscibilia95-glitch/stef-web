@@ -1,0 +1,25 @@
+---
+title: "Contacts"
+toc: false
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      text: Email
+      href: mailto:scibilia@essb.eur.nl
+    - icon: person-vcard
+      text: ORCID
+      href: https://orcid.org/0009-0006-4463-6459
+    - icon: mortarboard-fill
+      text: University profile
+      href: https://www.eur.nl/en/people/stefano-scibilia
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/stefano-scibilia-b464a8151/
+    - icon: chat-dots
+      text: Bluesky
+      href: https://bsky.app/profile/stef-scibilia.bsky.social
+    - icon: twitter-x
+      text: X
+      href: https://x.com/baccala_o
+---

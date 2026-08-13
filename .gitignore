@@ -1,0 +1,22 @@
+# Quarto
+/.quarto/
+/_site/
+
+# RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
+
+**/*.quarto_ipynb
+
+# CV LaTeX source. Not published by Quarto, but GitHub Pages on a free account
+# requires a PUBLIC repo — and main.tex inside this archive contains a phone
+# number. Keep it out of the repo; it lives on your Mac and in Overleaf.
+SS_Academic_CV_*.zip
+
+# Full-resolution originals (the web-sized copies in images/ are committed)
+/_originals/

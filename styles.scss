@@ -1,0 +1,209 @@
+/*-- scss:rules --*/
+
+/* ==========================================================================
+   Stefano Scibilia — site styles
+   Built on Quarto's Bootstrap themes (cosmo / darkly). Colours below use
+   Bootstrap CSS variables so everything adapts to the light/dark toggle.
+   ========================================================================== */
+
+/* --- Typography ---------------------------------------------------------- */
+
+body {
+  font-size: 1.03rem;
+  line-height: 1.65;
+}
+
+/* Keep prose at a comfortable measure; long lines are hard to read. */
+main {
+  max-width: 46rem;
+}
+
+/* The landing page uses a two-column layout and needs the full width. */
+body.quarto-about-trestles main,
+body.quarto-about-jolla main,
+body.quarto-about-solana main {
+  max-width: none;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin-top: 2.4rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+h3 {
+  margin-top: 1.8rem;
+  font-size: 1.15rem;
+}
+
+.subtitle {
+  font-weight: 400;
+  color: var(--bs-secondary-color);
+}
+
+/* Quarto sets the about-page subtitle at ~21px, which competes with the name
+   and forces the affiliation to wrap awkwardly in the narrow column. */
+#title-block-header .subtitle {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-top: 0.5rem;
+}
+
+/* The affiliation runs to four lines; Quarto's default 42% left column wraps the
+   department name. 46% fits it with room to spare while leaving the bio column
+   wide enough to read comfortably. The `div` qualifier is needed to match the
+   specificity of Quarto's own `div.quarto-about-trestles .about-entity`.
+   Scoped to wide screens only — below this the two columns stack anyway. */
+@media (min-width: 992px) {
+  div.quarto-about-trestles .about-entity {
+    flex: 0 0 46%;
+  }
+}
+
+
+/* Jost, self-hosted. SIL Open Font License 1.1 — full text in fonts/OFL.txt,
+   which must stay alongside the font file to satisfy the licence.
+
+   Only the Bold Latin subset is bundled (10 KB) because the face is used for a
+   single heading. Self-hosted rather than loaded from Google Fonts: that keeps
+   the site free of third-party requests, which also avoids the GDPR problem
+   German courts have found with embedding Google Fonts on EU sites.
+
+   The path is project-relative, not relative to the compiled stylesheet.
+   Quarto treats url() in SCSS as a build dependency: it resolves the path from
+   the project root, copies the file next to the compiled CSS in
+   site_libs/bootstrap/, and the URL then resolves correctly at runtime.
+   ("../../fonts/..." fails the build — Quarto resolves it to /Users/fonts/.) */
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/jost-700-latin.woff2") format("woff2");
+}
+
+/* Your name on the landing page: Jost, bold, all caps.
+
+   Jost is a geometric sans in the Futura tradition, so every visitor gets the
+   same look regardless of platform. Futura and the other geometric faces stay
+   behind it purely as a safety net if the woff2 ever fails to load.
+
+   Scoped to .quarto-about-trestles, which is the landing page only — the titles
+   on Research, Teaching, Outreach and Contacts are untouched.
+
+   Caps need more tracking than lowercase to avoid looking cramped, hence
+   0.06em — this also cancels the negative letter-spacing set on headings. */
+.quarto-about-trestles #title-block-header .title {
+  font-family: "Jost", Futura, "Century Gothic", "Avenir Next", Avenir,
+               "URW Gothic", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  /* At Quarto's default 34px the caps need ~341px in a 349px column on the
+     widest fallback — 8px of slack, which wraps on any machine whose metrics
+     differ slightly. 1.8rem leaves ~14%. Caps read larger than lowercase at the
+     same size, so this does not look smaller than before. */
+  font-size: 1.8rem;
+}
+
+/* Contact details on the landing page: Quarto renders `about: links:` as bordered
+   icon buttons, which hide the address behind a click. Strip the button chrome and
+   stack them so the email and ORCID iD read as plain text. */
+div.quarto-about-trestles .about-entity .about-links {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  margin-top: 1rem;
+}
+
+div.quarto-about-trestles .about-entity .about-link {
+  border: none;
+  background: none;
+  padding: 0;
+  min-width: 0;
+  height: auto;
+  font-size: 0.95rem;
+  /* Quarto colours these the same as body text once the button chrome is gone,
+     which leaves nothing to signal they are clickable. */
+  color: var(--bs-link-color);
+}
+
+div.quarto-about-trestles .about-entity .about-link:hover {
+  color: var(--bs-link-hover-color);
+  text-decoration: underline;
+}
+
+/* --- Links --------------------------------------------------------------- */
+
+main a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+/* --- Bibliography (Research page) ---------------------------------------- */
+/* Hanging indent, the way reference lists are set in print. Quarto applies its
+   own indent to .csl-bib-body and .csl-entry; we reset both and set our own so
+   the list sits flush with the section headings. */
+
+#refs.csl-bib-body {
+  margin-left: 0;
+  text-indent: 0;
+}
+
+#refs .csl-entry {
+  margin-left: 0;
+  margin-bottom: 0.95rem;
+  padding-left: 1.6em;
+  text-indent: -1.6em;
+}
+
+/* --- Course blocks (Teaching page) --------------------------------------- */
+
+.course {
+  border-left: 3px solid var(--bs-primary);
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.course .course-title {
+  margin-top: 0;
+}
+
+/* --- Tables -------------------------------------------------------------- */
+
+main table {
+  font-size: 0.95rem;
+}
+
+main table th {
+  border-bottom: 2px solid var(--bs-border-color);
+}
+
+/* --- About / landing page ------------------------------------------------ */
+
+.quarto-about-trestles .about-entity .about-image {
+  box-shadow: 0 2px 12px rgb(0 0 0 / 12%);
+}
+
+/* --- Footer -------------------------------------------------------------- */
+
+.nav-footer {
+  font-size: 0.88rem;
+  color: var(--bs-secondary-color);
+}
+
+/* --- Small screens ------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  body {
+    font-size: 1rem;
+  }
+  h2 {
+    margin-top: 1.8rem;
+  }
+}

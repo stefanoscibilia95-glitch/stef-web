@@ -1,0 +1,18 @@
+---
+title: "Page not found"
+# Keep it out of the site search index; it is not real content.
+search: false
+toc: false
+---
+
+Sorry — there is nothing at this address. The link may be out of date, or the
+address may have been mistyped.
+
+- [Home](/)
+- [Research](/research.html)
+- [Teaching](/teaching.html)
+- [Outreach](/outreach.html)
+- [Contacts](/contacts.html)
+
+If you followed a link here from somewhere else, do let me know at
+[scibilia@essb.eur.nl](mailto:scibilia@essb.eur.nl).

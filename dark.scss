@@ -1,0 +1,15 @@
+/*-- scss:defaults --*/
+
+// Dark-mode palette, layered on top of the `darkly` Bootswatch theme.
+// Light mode is unaffected — it uses `cosmo` untouched.
+//
+// Set as SCSS variables rather than CSS overrides so that Bootstrap derives the
+// matching hover, focus and active states from them instead of leaving a stale
+// green or blue behind.
+
+$navbar-bg: #cc0000;  // red   — RAL 3020
+$link-color: #ffd700; // yellow — RAL 2007
+
+// darkly's default navbar text (#dee2e6) scores only 4.52 against #cc0000 —
+// 0.02 above the WCAG AA floor of 4.5. Pure white lifts it to 5.89.
+$navbar-fg: #ffffff;

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "//": "Serves the already-rendered _site/ as static files with caching disabled. Deliberately NOT `quarto preview`: that command renders into memory and serves its own copy, so it either overwrites _site behind your back (default) or serves permanently stale HTML (--no-watch-inputs). With a static server there is exactly one writer, `quarto render`, and the browser always sees what is actually on disk. Render explicitly after editing.",
+      "name": "quarto-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [".claude/serve.py", "4321", "_site"],
+      "port": 4321
+    }
+  ]
+}
