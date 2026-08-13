@@ -1,3 +1,13 @@
+/*-- scss:defaults --*/
+
+// The two Bootswatch themes disagree on navbar padding: cosmo (light) uses
+// 0.5rem, darkly (dark) uses 1rem, which made the dark navbar render 17px
+// taller than the light one — visible as the red band being deeper than the
+// grey one when toggling. Pin both to the light value.
+// This file is in the theme list for BOTH modes, and Quarto layers user
+// defaults after the Bootswatch ones, so it wins in each.
+$navbar-padding-y: 0.5rem;
+
 /*-- scss:rules --*/
 
 /* ==========================================================================
@@ -136,6 +146,18 @@ div.quarto-about-trestles .about-entity .about-link {
 div.quarto-about-trestles .about-entity .about-link:hover {
   color: var(--bs-link-hover-color);
   text-decoration: underline;
+}
+
+/* Footer links. Quarto renders these in a muted grey in both themes (#8A8A8A on
+   dark, #757575 on light), which reads as disabled text rather than a link. Use
+   the theme's own link colour instead, so it picks up yellow in dark mode and
+   blue in light automatically. The surrounding footer text is already white. */
+.nav-footer a {
+  color: var(--bs-link-color);
+}
+
+.nav-footer a:hover {
+  color: var(--bs-link-hover-color);
 }
 
 /* --- Links --------------------------------------------------------------- */
