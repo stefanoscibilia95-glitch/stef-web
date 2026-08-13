@@ -22,4 +22,14 @@ about:
     - icon: twitter-x
       text: X
       href: https://x.com/baccala_o
+# Search-engine snippet and social-card text. Kept as raw metadata rather than a
+# `description:` key, because that key ALSO prints on the page as a visible
+# subtitle under the title.
+open-graph:
+  description: "How to reach Stefano Scibilia: email, ORCID, university profile, LinkedIn, Bluesky, and X."
+twitter-card:
+  description: "How to reach Stefano Scibilia: email, ORCID, university profile, LinkedIn, Bluesky, and X."
+include-in-header:
+  - text: |
+      <meta name="description" content="How to reach Stefano Scibilia: email, ORCID, university profile, LinkedIn, Bluesky, and X.">
 ---

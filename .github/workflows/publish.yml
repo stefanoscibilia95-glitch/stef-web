@@ -1,0 +1,42 @@
+name: Publish site
+
+# Renders the site and deploys it to the gh-pages branch on every push to main.
+# This means the live site can be updated from any machine — or from GitHub's own
+# web editor — without Quarto installed locally.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # also runnable by hand from the Actions tab
+
+# Needed so the action can push the built site to the gh-pages branch.
+permissions:
+  contents: write
+
+# If you push twice quickly, cancel the older run rather than racing it —
+# two builds writing gh-pages at once is the same one-writer problem as local.
+concurrency:
+  group: publish-site
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          # Pinned to the version used locally, so CI output matches what you
+          # see on your Mac. Bump deliberately, not by surprise.
+          version: 1.9.38
+
+      # No R or Python setup: the site has no executable code chunks, so this
+      # stays a pure render and finishes in well under a minute.
+      - name: Render and publish to gh-pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

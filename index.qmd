@@ -16,6 +16,7 @@ toc: false
 # five unrelated pages. Invisible on the page.
 include-in-header:
   - text: |
+      <meta name="description" content="PhD candidate in political science at Erasmus University Rotterdam, working on EU governance and socio-economic reform in the Member States.">
       <script type="application/ld+json">
       {
         "@context": "https://schema.org",

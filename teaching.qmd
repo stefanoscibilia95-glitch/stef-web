@@ -1,5 +1,15 @@
 ---
 title: "Teaching"
+# Search-engine snippet and social-card text. Kept as raw metadata rather than a
+# `description:` key, because that key ALSO prints on the page as a visible
+# subtitle under the title.
+open-graph:
+  description: "Bachelor's thesis supervision in the Management of International Social Challenges programme at Erasmus University Rotterdam."
+twitter-card:
+  description: "Bachelor's thesis supervision in the Management of International Social Challenges programme at Erasmus University Rotterdam."
+include-in-header:
+  - text: |
+      <meta name="description" content="Bachelor's thesis supervision in the Management of International Social Challenges programme at Erasmus University Rotterdam.">
 ---
 
 ## Thesis supervision modules

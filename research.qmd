@@ -1,5 +1,15 @@
 ---
 title: "Research"
+# Search-engine snippet and social-card text. Kept as raw metadata rather than a
+# `description:` key, because that key ALSO prints on the page as a visible
+# subtitle under the title.
+open-graph:
+  description: "Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
+twitter-card:
+  description: "Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
+include-in-header:
+  - text: |
+      <meta name="description" content="Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam.">
 ---
 
 ## Under review

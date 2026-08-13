@@ -1,5 +1,15 @@
 ---
 title: "Outreach"
+# Search-engine snippet and social-card text. Kept as raw metadata rather than a
+# `description:` key, because that key ALSO prints on the page as a visible
+# subtitle under the title.
+open-graph:
+  description: "Public engagement and policy work on EU socio-economic governance, including events for EU and national policymakers."
+twitter-card:
+  description: "Public engagement and policy work on EU socio-economic governance, including events for EU and national policymakers."
+include-in-header:
+  - text: |
+      <meta name="description" content="Public engagement and policy work on EU socio-economic governance, including events for EU and national policymakers.">
 ---
 
 ## 2026

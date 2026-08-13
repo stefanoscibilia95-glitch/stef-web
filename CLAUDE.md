@@ -32,15 +32,34 @@ so there is exactly one writer (`quarto render`) and one reader.
 Workflow: **edit → `quarto render` → reload the browser.** If a change refuses to
 appear, stop the server and `rm -rf _site .quarto && quarto render`.
 
-## Publishing
+## Publishing — push to `main`, CI does the rest
 
 ```bash
-quarto publish gh-pages     # updates what visitors see (gh-pages branch)
-git add . && git commit -m "..." && git push   # saves the sources (main branch)
+git add -A && git commit -m "..." && git push
 ```
 
-Both are needed; they do different things. `CNAME` is committed and listed under
-`project: resources:` so the custom domain survives every republish.
+`.github/workflows/publish.yml` renders on every push to `main` and deploys to
+`gh-pages`. Nothing else is needed, and it works from any machine or from GitHub's
+web editor — Quarto does not have to be installed.
+
+**Do not also run `quarto publish gh-pages` locally.** That would make two writers
+for `gh-pages`, the same class of bug as running `quarto preview` alongside
+`quarto render`. Locally, `quarto render` is for previewing only.
+
+If a run fails with a permissions error, set repo → Settings → Actions → General →
+Workflow permissions to **Read and write**. Quarto is pinned to 1.9.38 in the
+workflow so CI output matches local; bump it deliberately.
+
+`CNAME` is committed and listed under `project: resources:` so the custom domain
+survives every deploy.
+
+## Page metadata
+
+Every page carries a `<meta name="description">` plus `open-graph`/`twitter-card`
+descriptions, injected as raw tags via `include-in-header`. **Do not replace these
+with a plain `description:` key** — that key also prints on the page as a visible
+subtitle under the title, which is why it was removed in the first place.
+`index.qmd` additionally carries JSON-LD `Person` structured data.
 
 ## Layout
 
