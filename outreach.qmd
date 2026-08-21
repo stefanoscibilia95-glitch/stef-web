@@ -12,6 +12,6 @@ include-in-header:
       <meta name="description" content="Public engagement and policy work on EU socio-economic governance, including events for EU and national policymakers.">
 ---
 
-# 2026
+## 2026
 
 - Currently organizing a 1-day event in November 2026 for EU and national policymakers in collaboration with [OSE](https://ose.be/en/) on socio-economic reforms within the [National Recovery and Resilience Plans](https://reforms-investments.ec.europa.eu/technical-support-instrument-0/recovery-and-resilience-plans_en) and the [National Medium-term Fiscal-structural Plans](https://economy-finance.ec.europa.eu/economic-governance-framework/stability-and-growth-pact/preventive-arm/national-medium-term-fiscal-structural-plans_en).

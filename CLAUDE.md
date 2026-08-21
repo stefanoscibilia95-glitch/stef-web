@@ -4,13 +4,18 @@ Quarto website, live at **https://stefanoscibilia.com** (GitHub Pages, custom do
 via Cloudflare DNS). Owner is a PhD candidate in political science at Erasmus
 University Rotterdam.
 
-## Quarto is not on PATH
+## The Quarto binary
 
-Use the RStudio-bundled binary:
+Quarto is not installed system-wide; the copy in use ships inside RStudio. Stefano
+added it to `~/.zshrc`, so plain `quarto` works in RStudio's Terminal pane and in
+any login shell. The full path still works and is what scripts here use:
 
 ```bash
-/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto
+/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto   # 1.9.38
 ```
+
+That version matches the pin in `.github/workflows/publish.yml`, so local output
+and CI output agree.
 
 **On the Mac only.** A cloud session (Claude Code on the web) has no RStudio and no
 Quarto — do not try to render or preview there. Edit the `.qmd` files and let CI
@@ -100,12 +105,39 @@ before assuming something broke:
 git ls-remote origin 'refs/heads/claude/*'
 ```
 
+**The phone is the designated second route**, and it is deliberately kept working.
+`.qmd` bodies are plain markdown, so the GitHub iOS app — Browse code → Edit File →
+Commit — is enough to fix a typo, add a publication, or correct a date from
+anywhere. It commits straight to `main` and CI publishes. Keep the `.qmd` bodies
+free of anything that needs tooling to edit safely, so this stays true.
+
 **Editing blind is safe enough.** Phone and browser edits skip the local render, so
 they publish unseen. But `publish.yml` renders *and* deploys in one step: if the
 render fails the deploy never runs and the live site keeps serving the last good
 build. A bad commit gets a red X in Actions, not a broken website. So prose in `.qmd`
 bodies is fine from anywhere; leave `styles.scss`, `dark.scss`, and `_quarto.yml` for
 the Mac, where the result is visible before it ships.
+
+## Working with Claude — snippets, not silent edits
+
+**Default: Claude hands over the text, Stefano pastes it.** For anything in a
+`.qmd` body, Claude says which file, what to find, and what to replace it with.
+Stefano makes the edit, saves, clicks Render, and pushes. This is deliberate — he
+is learning the workflow, and changes made for him teach nothing and leave him
+unable to work alone.
+
+Claude may do without asking: read any file, inspect git state, run diagnostics,
+check the live site. All read-only, and they make the answers better.
+
+Claude should ask first before: editing `.qmd` files directly, rendering while
+RStudio may be open, or committing anything Stefano did not ask to have committed.
+**Check `git status` before `git add -A`.** A blanket add once swept Stefano's
+in-progress RStudio edits into an unrelated commit and published them early —
+nothing was lost, but the timing was his call, not Claude's.
+
+Infrastructure is different. `CLAUDE.md`, `_log.md`, `_notes.md`, `.claude/`,
+`_quarto.yml`, `styles.scss`, `dark.scss`, and the workflow files are Claude's to
+edit directly when asked.
 
 ## Page metadata
 

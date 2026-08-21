@@ -1,22 +1,16 @@
 ---
 title: "Stefano Scibilia"
 subtitle: "PhD Candidate<br>Policy, Politics, and Society<br>Dept. of Public Administration and Sociology<br>Erasmus University Rotterdam"
-# Social-card text only. A plain `description:` would ALSO print on the page,
-# under the affiliation, duplicating the Profile paragraph. Setting it here keeps
-# it in the metadata. Needed because Quarto otherwise derives the card text from
-# the subtitle, stripping the <br> tags without inserting spaces and producing
-# "PhD CandidatePolicy, Politics, and SocietyDept. of...".
+# Social-card text only. A plain `description:` would ALSO print on the page, under the affiliation, duplicating the Profile paragraph. Setting it here keeps it in the metadata. Needed because Quarto otherwise derives the card text from the subtitle, stripping the <br> tags without inserting spaces and producing "PhD CandidatePolicy, Politics, and SocietyDept. of...".
 open-graph:
-  description: "PhD candidate in political science at Erasmus University Rotterdam, working on EU governance and socio-economic reform in the Member States."
+  description: "PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States."
 twitter-card:
-  description: "PhD candidate in political science at Erasmus University Rotterdam, working on EU governance and socio-economic reform in the Member States."
+  description: "PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States."
 toc: false
-# Structured data: tells Google this site is about a specific person, and ties it
-# to your ORCID and profiles so they are treated as the same entity rather than
-# five unrelated pages. Invisible on the page.
+# Structured data: tells Google this site is about a specific person, and ties it to your ORCID and profiles so they are treated as the same entity rather than five unrelated pages. Invisible on the page.
 include-in-header:
   - text: |
-      <meta name="description" content="PhD candidate in political science at Erasmus University Rotterdam, working on EU governance and socio-economic reform in the Member States.">
+      <meta name="description" content="PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States.">
       <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -67,7 +61,7 @@ My research is focused on understanding to what extent different configurations 
 
 ## Currently
 
-I am in the final year of my PhD and expect to finish in the Spring of 2027.
+I am in the final year of my PhD, finishing in June 2027.
 
 ## Research interests
 
