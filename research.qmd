@@ -4,7 +4,7 @@ title: "Research"
 # `description:` key, because that key ALSO prints on the page as a visible
 # subtitle under the title.
 open-graph:
-  description: "Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
+  description: "Work currently under review, conference papers, peer-reviews, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
 twitter-card:
   description: "Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
 include-in-header:
@@ -12,16 +12,17 @@ include-in-header:
       <meta name="description" content="Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam.">
 ---
 
-## Under review
+## Papers under review
 
-*From external to internal constraints? Nominal compliance and the Europeanization of socio-economic reforms under the Recovery and Resilience Facility in Spain*\
-**Stefano Scibilia** and Markus Haverland · July 2026
+### 2026
+
+- **Scibilia S.** and Haverland M., (2026), *From external to internal constraints? Nominal compliance and the Europeanization of socio-economic reforms under the Recovery and Resilience Facility in Spain*
 
 ## Conference papers
 
-*From the Recovery and Resilience Plans to the Medium-term Fiscal-structural Plans: the case of pension policy*\
-**Stefano Scibilia**\
-13th Biennial Conference of the ECPR Standing Group on the European Union · Catania, July 2026 · [Paper details](https://ecpr.eu/Events/Event/PaperDetails/86258)
+### 2026
+
+- **Scibilia S.**, (2026), *From the Recovery and Resilience Plans to the Medium-term Fiscal-structural Plans: the case of pension policy.* Presented at the 13th Biennial Conference of the ECPR Standing Group on the European Union. Catania 1-3 July 2026. ([Paper details](https://ecpr.eu/Events/Event/PaperDetails/86258)).
 
 *Domestic coalitions and compliance in the European Semester: does the Recovery and Resilience Facility make a difference in Italy?*\
 **Stefano Scibilia**, Markus Haverland, Pieter Tuytens, and Asya Zhelyazkova\
@@ -43,21 +44,21 @@ include-in-header:
 
 ### 2025
 
-*Journal of Ethnic and Migration Studies*
+- 1 manuscript for *Journal of Ethnic and Migration Studies*
 
-*Journal of European Public Policy*
+- 1 manuscript for *Journal of European Public Policy*
 
 ### 2026
 
-*International Environmental Agreements: Politics, Law and Economics*
+- 1 manuscript for *International Environmental Agreements: Politics, Law and Economics*
 
-## Training
+## Methods Training
 
-**MethodsNET Summer School** · Central European University, Vienna · July 2025\
-Comparative Research Designs; Comparative Historical Analysis
+- **MethodsNET Summer School** · Central European University, Vienna · July 2025\
+  Comparative Research Designs; Comparative Historical Analysis
 
-**ECPR Methods School** (online) · KU Leuven · February 2025\
-Process Tracing Methods; Interviews as Method of Data Collection in Times of Polarisation
+- **ECPR Methods School** (online) · KU Leuven · February 2025\
+  Process Tracing Methods; Interviews as Method of Data Collection in Times of Polarisation
 
-**Netherlands Institute of Governance** · 2023–2025\
-Formulating and Answering Research Questions (2024); Responsibility and Integrity in Research / The Politics of Research (2024); Classic Themes and Contemporary Challenges for Public Governance (2024); Current themes in EU governance (2025); Preparing your future academic career (2025).
+- **Netherlands Institute of Governance** · 2023–2025\
+  Formulating and Answering Research Questions (2024); Responsibility and Integrity in Research / The Politics of Research (2024); Classic Themes and Contemporary Challenges for Public Governance (2024); Current themes in EU governance (2025); Preparing your future academic career (2025).
