@@ -196,6 +196,12 @@ them from `_sources/stef-biblatex.bib`.
   default `#DEE2E6` scores 4.52 on the red, barely passing WCAG AA; white gives 5.89).
 - **Name on the landing page**: Jost Bold, all caps, self-hosted (SIL OFL). Sized
   1.8rem so it fits the column on one line with headroom.
+- **Favicon**: white Jost Bold `S` on a `#CC0000` rounded square, 256×256 with
+  transparent corners. Chosen on 16px legibility, which is the only size that
+  matters in a tab: a solid red block reads on both light and dark tab bars. The
+  alternatives failed there — a black letter with no background is invisible on a
+  dark tab, and white-background variants dissolve into a light one. The previous
+  yellow-on-black went muddy as the strokes thinned.
 - **Affiliation order** is narrow → broad, with the Oxford comma:
   PhD Candidate / Policy, Politics, and Society / Dept. of Public Administration and
   Sociology / Erasmus University Rotterdam. This matches EUR and Pure; the CV's
