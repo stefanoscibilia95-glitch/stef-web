@@ -12,6 +12,10 @@ Use the RStudio-bundled binary:
 /Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto
 ```
 
+**On the Mac only.** A cloud session (Claude Code on the web) has no RStudio and no
+Quarto — do not try to render or preview there. Edit the `.qmd` files and let CI
+render on merge.
+
 ## Rendering: ONE renderer at a time
 
 **Never run `quarto preview`.** It is not a passive server: it renders the site
@@ -52,6 +56,42 @@ workflow so CI output matches local; bump it deliberately.
 
 `CNAME` is committed and listed under `project: resources:` so the custom domain
 survives every deploy.
+
+## Editing from anywhere — five routes
+
+None of these needs an SSH key except the Mac. SSH authenticates git from a command
+line; the phone app, mobile Safari, and cloud sessions all ride the logged-in GitHub
+account. There is nothing to set up on a new phone or browser beyond signing in.
+
+| Route | Needs | Lands on | Goes live |
+|---|---|---|---|
+| Claude Code on the Mac | nothing | `main` | on push |
+| RStudio by hand | Quarto | `main` | on push |
+| Claude Code on the web | nothing | a `claude/…` branch | **after you merge** |
+| github.com in any browser | nothing | `main` | on commit |
+| GitHub iOS app — Browse code → Edit File → Commit | nothing | `main` | on commit |
+
+**`git pull` before starting local work.** Every time. With several writers on one
+repo a stale clone is the failure mode that will actually happen — the same class of
+bug as two renderers, one level up.
+
+**Web sessions are the odd one out.** Claude Code on the web opens a PR instead of
+committing to `main`, so the change waits on a branch. That is the review step, not
+a malfunction — but a change made there never reaches the live site on its own. Note
+the trap: a *read-only* web session leaves behind a `claude/…` branch sitting at the
+same commit as `main`, which looks exactly like a failed session. Compare the SHAs
+before assuming something broke:
+
+```bash
+git ls-remote origin 'refs/heads/claude/*'
+```
+
+**Editing blind is safe enough.** Phone and browser edits skip the local render, so
+they publish unseen. But `publish.yml` renders *and* deploys in one step: if the
+render fails the deploy never runs and the live site keeps serving the last good
+build. A bad commit gets a red X in Actions, not a broken website. So prose in `.qmd`
+bodies is fine from anywhere; leave `styles.scss`, `dark.scss`, and `_quarto.yml` for
+the Mac, where the result is visible before it ships.
 
 ## Page metadata
 

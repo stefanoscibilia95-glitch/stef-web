@@ -97,3 +97,23 @@ Each of these cost real time; all are documented in `CLAUDE.md` so they don't re
   team name, two typos, and the 2023 NIG title.
 - Optional: turn off Cloudflare Bot Fight Mode so it cannot bite if the proxy is
   ever switched on.
+
+---
+
+## 2026-08-21 — editing routes across desktop, web, and phone
+
+Deleted `claude/website-repo-setup-check-la7yir`, an empty branch left behind by a
+read-only Claude Code web session. It pointed at the same commit as `main` — that
+session had verified the repo and changed nothing, so there was nothing to merge and
+nothing to deploy, which is why it looked like it had failed. Worth recognising the
+pattern: an empty `claude/…` branch is a completed read-only session, not a broken one.
+
+Documented the five editing routes in `CLAUDE.md`. Two beliefs held during that
+session were wrong and are corrected there:
+
+- **The GitHub iOS app can edit files** — Browse code → Edit File → Commit, shipped
+  November 2022. The web session guessed otherwise because its sandbox blocked
+  `docs.github.com`; it did flag the guess as unverified.
+- **No SSH key is needed on the phone.** SSH authenticates git from a command line
+  only. The app, mobile Safari, and cloud sessions all ride the logged-in GitHub
+  account. The Mac's key is the only one in play.
