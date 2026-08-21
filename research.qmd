@@ -12,11 +12,13 @@ include-in-header:
       <meta name="description" content="Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam.">
 ---
 
-## Under review
+# Under review
+
 *From external to internal constraints? Nominal compliance and the Europeanization of socio-economic reforms under the Recovery and Resilience Facility in Spain*\
 **Stefano Scibilia** and Markus Haverland · July 2026
 
-## Conference papers
+# Conference papers
+
 *From the Recovery and Resilience Plans to the Medium-term Fiscal-structural Plans: the case of pension policy*\
 **Stefano Scibilia**\
 13th Biennial Conference of the ECPR Standing Group on the European Union · Catania, July 2026 · [Paper details](https://ecpr.eu/Events/Event/PaperDetails/86258)
@@ -37,12 +39,20 @@ include-in-header:
 **Stefano Scibilia**\
 20th Netherlands Institute of Governance Annual Work Conference · Delft, November 2023
 
-## Service
-Reviewer for the *Journal of Ethnic and Migration Studies* (2025).
+# Peer-review activity
 
-Reviewer for the *Journal of European Public Policy* (2026).
+## 2025
 
-## Training
+*Journal of Ethnic and Migration Studies*
+
+*Journal of European Public Policy*
+
+## 2026
+
+*International Environmental Agreements: Politics, Law and Economics*
+
+# Training
+
 **MethodsNET Summer School** · Central European University, Vienna · July 2025\
 Comparative Research Designs; Comparative Historical Analysis
 

@@ -18,23 +18,37 @@ render on merge.
 
 ## Rendering: ONE renderer at a time
 
-**Never run `quarto preview`.** It is not a passive server: it renders the site
-itself and serves its own in-memory copy. Two failure modes, both hit during
-development:
+The rule is **one renderer at a time** — not "never preview". `quarto preview` is
+not a passive server: it renders the site itself and serves its own in-memory
+copy. That is fine when it is the only thing rendering, and broken the moment
+anything else writes `_site` underneath it.
+
+Two failure modes, both hit during the first build:
 
 - **default** — re-renders on file change and writes into `_site/`, silently
   overwriting whatever `quarto render` just produced. Symptom: an edit appears,
   then vanishes; the `.qmd` is correct but `_site` holds older HTML.
-- **`--no-watch-inputs`** — stops overwriting, but then serves permanently stale
-  HTML because it never refreshes its in-memory copy. Verified by appending a
-  marker directly to `_site/research.html`: the response did not change by a byte.
+- **`--no-watch-inputs`** — stops overwriting, but then ignores external writes to
+  `_site` entirely. Verified by appending a marker directly to
+  `_site/research.html`: the response did not change by a byte.
 
-To preview, use the static server in `.claude/launch.json` (`.claude/serve.py`,
-port 4321). It reads from disk on every request and sends `Cache-Control: no-store`,
-so there is exactly one writer (`quarto render`) and one reader.
+So there are two valid setups, and mixing them is the only real mistake:
 
-Workflow: **edit → `quarto render` → reload the browser.** If a change refuses to
-appear, stop the server and `rm -rf _site .quarto && quarto render`.
+| Who is working | How |
+|---|---|
+| **Stefano alone in RStudio** | Click **Render**. This is the normal Quarto workflow and it is correct here. RStudio runs `quarto preview --no-watch-inputs` and refreshes it on each Render, so it stays self-consistent. |
+| **Claude, from the command line** | `quarto render` plus the static server in `.claude/launch.json` (`.claude/serve.py`, port 4321), which reads from disk on every request and sends `Cache-Control: no-store`. |
+| **Both at once** | Never. This is the bug. |
+
+**Enforced, not remembered.** `.claude/guard-renderer.sh` runs as a PreToolUse
+hook (wired up in `.claude/settings.json`) and refuses any `quarto render` or
+`quarto publish` while a Quarto preview is listening. It identifies the preview by
+its listening `deno` process, so `serve.py` (Python) never trips it, and it fails
+open on unexpected input rather than wedging the session. To clear the block, stop
+the preview with the red square in RStudio's Render / Background Jobs pane.
+
+Claude's loop: **edit → `quarto render` → reload the browser.** If a change refuses
+to appear, stop the server and `rm -rf _site .quarto && quarto render`.
 
 ## Publishing — push to `main`, CI does the rest
 
@@ -114,6 +128,7 @@ subtitle under the title, which is why it was removed in the first place.
 | `_notes.md` | Maintenance notes — **read this before non-trivial changes** |
 | `_sources/` | Zotero `.bib`, CV LaTeX archive, full-resolution photo. Underscore prefix ⇒ Quarto never publishes it |
 | `fonts/` | Self-hosted Jost + its OFL licence |
+| `.claude/` | `serve.py` static preview server, `launch.json`, and `guard-renderer.sh` + `settings.json` (the one-renderer hook) |
 | `images/` | `profile.jpg` (800×800, web-sized), `favicon.png` |
 
 ## Things that will bite you

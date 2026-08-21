@@ -117,3 +117,30 @@ session were wrong and are corrected there:
 - **No SSH key is needed on the phone.** SSH authenticates git from a command line
   only. The app, mobile Safari, and cloud sessions all ride the logged-in GitHub
   account. The Mac's key is the only one in play.
+
+---
+
+## 2026-08-21 (cont.) — the one-renderer rule, now enforced
+
+Refined the rule in `CLAUDE.md`. "Never run `quarto preview`" was over-broad.
+RStudio's Render button launches `quarto preview --no-watch-inputs`, and that is
+the standard, correct Quarto workflow when it is the *only* renderer — it
+refreshes itself on each Render. The bug was never preview; it was two renderers.
+Stefano working alone in RStudio should simply click Render. The render-plus-
+static-server arrangement is Claude's workflow, not his, and asking him to carry
+it was the wrong call.
+
+Added `.claude/guard-renderer.sh`, a PreToolUse hook on Bash (wired up in
+`.claude/settings.json`) that refuses `quarto render` and `quarto publish` while a
+Quarto preview is listening. The collision is now impossible rather than something
+either of us has to remember.
+
+Detection is by **listening `deno` process**, not by command-line text. That
+matters twice: `serve.py` is Python so it can never be mistaken for a preview, and
+a shell that merely *mentions* "quarto preview" in its text does not trip it. The
+guard fails open on unexpected input — a broken guard should not wedge the
+session, and a missed check only costs a stale preview.
+
+Verified end to end, five cases: allows unrelated commands; allows a render with
+nothing serving; ignores malformed input; blocks a real render against a live
+preview on :4399 with an actionable message; allows again once the preview stops.
