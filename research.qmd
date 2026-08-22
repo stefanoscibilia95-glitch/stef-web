@@ -6,41 +6,49 @@ title: "Research"
 open-graph:
   description: "Work currently under review, conference papers, peer-reviews, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
 twitter-card:
-  description: "Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
+  description: "Work currently under review, conference papers, peer-reviews, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam."
 include-in-header:
   - text: |
-      <meta name="description" content="Work under review, conference papers, peer review, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam.">
+      <meta name="description" content="Work currently under review, conference papers, peer-reviews, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam.">
 ---
 
 ## Papers under review
 
 ### 2026
 
-- **Scibilia S.** and Haverland M., (2026), *From external to internal constraints? Nominal compliance and the Europeanization of socio-economic reforms under the Recovery and Resilience Facility in Spain*
+- **Scibilia, S.,** and Haverland, M. (2026). *From external to internal constraints? Nominal compliance and the Europeanization of socio-economic reforms under the Recovery and Resilience Facility in Spain*.
 
 ## Conference papers
 
 ### 2026
 
-- **Scibilia S.**, (2026), *From the Recovery and Resilience Plans to the Medium-term Fiscal-structural Plans: the case of pension policy.* Presented at the 13th Biennial Conference of the ECPR Standing Group on the European Union. Catania 1-3 July 2026. ([Paper details](https://ecpr.eu/Events/Event/PaperDetails/86258)).
+- **Scibilia, S.** (2026). *From the Recovery and Resilience Plans to the Medium-term Fiscal-structural Plans: the case of pension policy*. 13th Biennial Conference of the ECPR Standing Group on the European Union, Catania, 1–3 July 2026 ([Paper details](https://ecpr.eu/Events/Event/PaperDetails/86258)).
 
-*Domestic coalitions and compliance in the European Semester: does the Recovery and Resilience Facility make a difference in Italy?*\
-**Stefano Scibilia**, Markus Haverland, Pieter Tuytens, and Asya Zhelyazkova\
-19th Biennial Conference of the European Union Studies Association · Philadelphia, May 2025
+- **Scibilia, S.,** and Haverland, M. (2026). *From external to internal constraints? Social pacts and socio-economic reforms under the Recovery and Resilience Facility in Spain*. 13th Biennial Conference of the ECPR Standing Group on the European Union, Catania, 1–3 July 2026 ([Paper details](https://ecpr.eu/Events/Event/PaperDetails/86255)).
 
-*Does the Recovery and Resilience Facility tilt the balance?*\
-**Stefano Scibilia**, Markus Haverland, Pieter Tuytens, and Asya Zhelyazkova\
-21st Netherlands Institute of Governance Annual Work Conference · Ghent, February 2025
+- **Scibilia, S.,** and Haverland, M. (2026). *Does RRF-induced centralization lead to structural reforms?* 22nd Netherlands Institute of Governance Annual Work Conference, Ghent, 5–6 February 2026.
 
-*Tilting the balance: the Recovery and Resilience Facility and labor market reforms inside the Italian political laboratory*\
-**Stefano Scibilia**, Markus Haverland, Pieter Tuytens, and Asya Zhelyazkova\
-12th Biennial Conference of the ECPR Standing Group on the European Union · Lisbon, June 2024 · [Paper details](https://ecpr.eu/Events/Event/PaperDetails/73293)
+- **Scibilia, S.** (2026). *Domestic coalitions and (non)compliance in the European Semester: does the Recovery and Resilience Facility make a difference in Italy?* X Convegno Società Italiana di Sociologia Economica, Florence, 28–31 January 2026.
 
-*Continuity and change in EU governance: does the RRF alter the patterns of CSR compliance in the EU South?*\
-**Stefano Scibilia**\
-20th Netherlands Institute of Governance Annual Work Conference · Delft, November 2023
+### 2025
+
+- **Scibilia, S.,** Haverland, M., Tuytens, P., and Zhelyazkova, A. (2025). *Domestic coalitions and compliance in the European Semester: does the Recovery and Resilience Facility make a difference in Italy?* 19th Biennial Conference of the European Union Studies Association, Philadelphia, 8–10 May 2025.
+
+- **Scibilia, S.,** Haverland, M., Tuytens, P., and Zhelyazkova, A. (2025). *Does the Recovery and Resilience Facility tilt the balance?* 21st Netherlands Institute of Governance Annual Work Conference, Ghent, 6–7 February 2025.
+
+### 2024
+
+- **Scibilia, S.,** Haverland, M., Tuytens, P., and Zhelyazkova, A. (2024). *Tilting the balance: the Recovery and Resilience Facility and labor market reforms inside the Italian political laboratory*. 12th Biennial Conference of the ECPR Standing Group on the European Union, Lisbon, 19–21 June 2024 ([Paper details](https://ecpr.eu/Events/Event/PaperDetails/73293)).
+
+### 2023
+
+- **Scibilia, S.** (2023). *Continuity and change in EU governance: does the RRF alter the patterns of CSR compliance in the EU South?* 20th Netherlands Institute of Governance Annual Work Conference, Delft, 2–3 November 2023.
 
 ## Peer-review activity
+
+### 2026
+
+- 1 manuscript for *International Environmental Agreements: Politics, Law and Economics*
 
 ### 2025
 
@@ -48,11 +56,7 @@ include-in-header:
 
 - 1 manuscript for *Journal of European Public Policy*
 
-### 2026
-
-- 1 manuscript for *International Environmental Agreements: Politics, Law and Economics*
-
-## Methods Training
+## Methods training
 
 - **MethodsNET Summer School** · Central European University, Vienna · July 2025\
   Comparative Research Designs; Comparative Historical Analysis
