@@ -1,15 +1,31 @@
 /*-- scss:defaults --*/
 
 // Dark-mode palette, layered on top of the `darkly` Bootswatch theme.
-// Light mode is unaffected — it uses `cosmo` untouched.
+// Light mode is unaffected — it uses `cosmo` plus light.scss.
 //
 // Set as SCSS variables rather than CSS overrides so that Bootstrap derives the
 // matching hover, focus and active states from them instead of leaving a stale
 // green or blue behind.
 
-$navbar-bg: #cc0000;  // red   — RAL 3020
-$link-color: #ffd700; // yellow — RAL 2007
+$navbar-bg: #cc0000;  // brand red
+$link-color: #ffd700; // brand yellow
 
-// darkly's default navbar text (#dee2e6) scores only 4.52 against #cc0000 —
-// 0.02 above the WCAG AA floor of 4.5. Pure white lifts it to 5.89.
-$navbar-fg: #ffffff;
+// Not pure white. #FFFFFF on a near-black page measures 15.9:1, far past the 7:1
+// of AAA, and that much contrast makes light type appear to bleed into the dark
+// ground — halation, which is worse for the large share of readers with any
+// astigmatism. A warm off-white lands at 13.7:1: still far above AAA, visibly
+// softer, and it echoes the sepia of light mode rather than introducing a new
+// colour. It also clears the red navbar at 5.05:1, against 5.89 for pure white.
+$body-color: #f2eee4;
+$navbar-fg:  #f2eee4;
+
+/*-- scss:rules --*/
+
+// Current-page marker, in brand yellow. As a graphical element this needs 3:1,
+// not 4.5:1 — it measures 4.20 on the red band.
+.navbar .navbar-nav .nav-link.active {
+  // As in light mode: Bootstrap would tint the active item from $link-color.
+  // Pinned back so the rule below is the only marker.
+  color: #f2eee4;
+  border-bottom-color: #ffd700;
+}

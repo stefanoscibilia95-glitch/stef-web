@@ -10,7 +10,8 @@ project:
     - CNAME
     # SIL OFL 1.1 requires the licence to travel with the font wherever it is
     # redistributed, and serving the .woff2 publicly counts as redistribution.
-    - fonts/OFL.txt
+    - fonts/OFL-Jost.txt
+    - fonts/OFL-SourceSerif4.txt
 
 website:
   title: "Stefano Scibilia"
@@ -50,7 +51,7 @@ format:
     # so Quarto compiles it into a content-hashed filename. That means an edit
     # always produces a new URL and can never be served from a stale browser cache.
     theme:
-      light: [cosmo, styles.scss]
+      light: [cosmo, styles.scss, light.scss]
       dark: [darkly, styles.scss, dark.scss]
     toc: true
     toc-depth: 2

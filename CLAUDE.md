@@ -156,6 +156,7 @@ subtitle under the title, which is why it was removed in the first place.
 | `404.qmd` | Not-found page; **links must stay absolute** (`/research.html`) because it is served from any depth |
 | `styles.scss` | All custom CSS (theme layer, both light and dark) |
 | `dark.scss` | Dark-mode SCSS variables only |
+| `light.scss` | Light-mode SCSS variables only — the mirror of `dark.scss` |
 | `_quarto.yml` | Site config, navbar, theme, Open Graph |
 | `_notes.md` | Maintenance notes — **read this before non-trivial changes** |
 | `_sources/` | Zotero `.bib`, CV LaTeX archive, full-resolution photo. Underscore prefix ⇒ Quarto never publishes it |
@@ -192,10 +193,44 @@ them from `_sources/stef-biblatex.bib`.
 
 ## Design decisions
 
-- **Dark mode**: navbar `#CC0000`, links `#FFD700`, navbar text pure white (darkly's
-  default `#DEE2E6` scores 4.52 on the red, barely passing WCAG AA; white gives 5.89).
+- **Three brand colours, and no others.** Red `#CC0000`, yellow `#FFD700`, green
+  `#D3DCBF`, plus warm neutrals for ground and ink. Do not introduce a fourth.
+  Bootstrap will try to: it derives its own active-nav tint from `$link-color`
+  (it produced `#8B0000` here), so both mode files pin that back explicitly.
+- **Dark mode**: navbar `#CC0000`, links `#FFD700`, text `#F2EEE4`.
+- **Dark-mode text is not pure white.** `#FFFFFF` on `#222` measures 15.9:1 —
+  more than double AAA — and that much contrast makes light type appear to bleed
+  into the dark ground (halation), which is worse for anyone with astigmatism.
+  `#F2EEE4` gives 13.7:1, still well past AAA, visibly softer, and warm enough to
+  echo the sepia of light mode instead of adding a colour. It clears the red
+  navbar at 5.08:1.
 - **Name on the landing page**: Jost Bold, all caps, self-hosted (SIL OFL). Sized
   1.8rem so it fits the column on one line with headroom.
+- **Light mode is warm, not white.** cosmo ships `#FFFFFF` under a `#F8F9FA`
+  navbar, which glares. `light.scss` sets the page to a `#FDF6E3` sepia and
+  darkens the ink to `#34302A`. A warm ground carries darker text without
+  harshness, so contrast *improved*: 12.2:1 against the white theme's 11.5:1.
+- **The band is brand green `#D3DCBF`.** A pale near-grey band read as dull.
+- **The current page is marked by a 3px underline, not a colour.** This is the
+  rule that keeps the palette to three colours. Coloured *text* must clear 4.5:1,
+  and brand red on the green band reaches only 4.14 — which had previously forced
+  a fourth, darker red into the design. An underline is a *graphical* element and
+  needs just 3:1, so it can stay pure `#CC0000` in light and `#FFD700` in dark.
+  It also satisfies WCAG 1.4.1: state is not signalled by colour alone. Inactive
+  items carry a transparent border of the same width so nothing shifts.
+- **The navbar is 600, not the body weight**, which read thin beside Jost
+  headings and the heavier band. That face is already self-hosted, so it is free.
+- **Body is self-hosted Source Serif 4, headings are Jost.** Four faces (400,
+  400i, 600, 600i), latin subset only, ~83 KB total. Geometric sans display
+  against a rational screen serif gives real hierarchy; a serif also carries the
+  dense citation lists better than cosmo's sans did. Both SIL OFL licences are
+  listed under `project: resources:` — serving the `.woff2` counts as
+  redistribution.
+- **One font stack in both modes.** cosmo asks for Source Sans Pro and darkly for
+  Lato, and neither ships with the theme, so each mode fell back independently —
+  measured on the author's Mac, light rendered Source Sans Pro and dark fell
+  through to San Francisco, ~8% wider for the same string. `$font-family-sans-serif`
+  is pinned in `styles.scss`, which is in both theme lists.
 - **Favicon**: white Jost Bold `S` on a `#CC0000` rounded square, 256×256 with
   transparent corners. Chosen on 16px legibility, which is the only size that
   matters in a tab: a solid red block reads on both light and dark tab bars. The

@@ -8,6 +8,32 @@
 // defaults after the Bootswatch ones, so it wins in each.
 $navbar-padding-y: 0.5rem;
 
+// Typography is pinned here, in the layer both themes share, for two reasons.
+//
+// First, consistency between modes: cosmo asks for Source Sans Pro and darkly
+// for Lato, neither ships with its theme, so each mode fell back independently.
+// Measured before this change — light rendered Source Sans Pro, dark fell
+// through Lato to San Francisco, about 8% wider for the same string and clearly
+// visible when toggling.
+//
+// Second, consistency between visitors: both faces below are self-hosted from
+// fonts/, so nobody depends on having something installed. Same reasoning that
+// put Jost on the landing page instead of Futura.
+//
+// Body is Source Serif 4 — Adobe's screen-first text serif, low stroke contrast
+// and open apertures, which holds up in the dense citation lists on Research.
+// Headings are Jost, the geometric sans already used for the name: a Bauhaus
+// display face against a rational serif text face, so hierarchy comes from the
+// pairing rather than from size alone.
+$font-family-sans-serif: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+$headings-font-family: "Jost", Futura, "Century Gothic", "Avenir Next", Avenir, "URW Gothic", sans-serif;
+
+// Only the 600 weight is shipped, not 700. A semibold is the right "bold" for a
+// text serif — 700 turns muddy at body sizes — and pointing Bootstrap at 600
+// means <strong> hits a real face instead of a browser-synthesised fake.
+$font-weight-bold: 600;
+$headings-font-weight: 700;   // Jost is shipped at 700 only
+
 /*-- scss:rules --*/
 
 /* ==========================================================================
@@ -97,6 +123,38 @@ h3 {
   src: url("fonts/jost-700-latin.woff2") format("woff2");
 }
 
+/* Source Serif 4, latin subset, four faces (~81 KB total). Regular and semibold
+   in both upright and italic — the Research page leans on italics for titles and
+   on bold for the author name, so all four earn their place. */
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/source-serif-400-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/source-serif-400i-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/source-serif-600-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/source-serif-600i-latin.woff2") format("woff2");
+}
+
 /* Your name on the landing page: Jost, bold, all caps.
 
    Jost is a geometric sans in the Futura tradition, so every visitor gets the
@@ -152,6 +210,28 @@ div.quarto-about-trestles .about-entity .about-link:hover {
    dark, #757575 on light), which reads as disabled text rather than a link. Use
    the theme's own link colour instead, so it picks up yellow in dark mode and
    blue in light automatically. The surrounding footer text is already white. */
+/* --- Navigation ---------------------------------------------------------- */
+
+/* The navbar sat at the body weight, which read thin beside Jost headings and
+   the heavier band. 600 is the semibold face already self-hosted, so this costs
+   no extra download. */
+.navbar .navbar-nav .nav-link {
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  padding-bottom: 0.15rem;
+}
+
+/* The current page is marked by a rule beneath the item rather than by changing
+   its colour. Two reasons. A colour-only signal is text and has to clear 4.5:1,
+   which is what forced a second, darker red onto the sage band; an underline is
+   a graphical element and needs only 3:1, so it can stay a pure brand colour on
+   both bands. And per WCAG 1.4.1 a state should not be signalled by colour
+   alone. The colour is set per mode in light.scss / dark.scss; the transparent
+   border above reserves the space so nothing shifts when the marker appears. */
+.navbar .navbar-nav .nav-link.active {
+  border-bottom-color: currentColor;
+}
+
 .nav-footer a {
   color: var(--bs-link-color);
 }

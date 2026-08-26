@@ -1,0 +1,59 @@
+/*-- scss:defaults --*/
+
+// Light-mode palette, layered on top of the `cosmo` Bootswatch theme.
+// The mirror of dark.scss — dark mode is untouched by this file.
+//
+// The whole site runs on three brand colours and two warm neutrals. Nothing else
+// should be introduced here without a reason written down:
+//
+//   brand red    #CC0000
+//   brand yellow #FFD700   (dark mode only)
+//   brand green  #D3DCBF   (the light-mode band)
+//   page         #FDF6E3   warm neutral
+//   ink          #34302A   warm neutral
+//
+// cosmo ships a pure #FFFFFF page under a near-white #F8F9FA navbar, which
+// glares and gives the eye nothing to rest on. A warm ground also carries darker
+// ink without harshness, so contrast improves rather than degrades: 12.2:1 here
+// against 11.5:1 on white.
+
+$body-bg:     #FDF6E3;  // sepia page
+$body-color:  #34302A;  // warm near-black
+$navbar-bg:   #D3DCBF;  // brand green band
+$footer-bg:   #D3DCBF;  // matched to the navbar so the page is framed evenly
+$navbar-fg:   #34302A;  // ink on the band — 9.21:1
+
+// Brand red for body links, so light mode carries the same identity as the dark
+// navbar. 5.46:1 on the sepia page, over the AA floor and level with the 5.58 of
+// cosmo's blue that it replaces. Links stay underlined, so colour is never the
+// only cue.
+$link-color:  #cc0000;
+
+/*-- scss:rules --*/
+
+// Current-page marker, in brand red. As a graphical element this needs 3:1, not
+// the 4.5:1 that text requires — it measures 4.14 on the band, which is why the
+// underline can stay pure #CC0000 where red *text* on sage could not.
+.navbar .navbar-nav .nav-link.active {
+  // Bootstrap derives its own active colour (#8B0000 here) from $link-color.
+  // That is a fourth red nobody chose, so the text is pinned back to ink and the
+  // rule below is left as the only marker.
+  color: #34302A;
+  border-bottom-color: #cc0000;
+}
+
+// The footer sits on the same green band, where #CC0000 would drop to 4.14 and
+// fail as text. Ink plus an underline keeps it legible and keeps the palette to
+// three brand colours.
+.nav-footer a {
+  color: #34302A;
+  text-decoration: underline;
+}
+
+// Hover thickens the rule rather than changing the colour: #CC0000 would drop to
+// 4.14 here and fail as text, and every other hue would be a fourth colour.
+.nav-footer a:hover {
+  color: #34302A;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
