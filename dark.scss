@@ -21,6 +21,21 @@ $navbar-fg:  #f2eee4;
 
 /*-- scss:rules --*/
 
+// Hover, mirroring what light mode does: the nav item shifts to the accent
+// colour. darkly's default was near-white at 80% opacity, which measured 4.00 —
+// under AA and barely visible as a state change. Brand yellow reads as an actual
+// highlight at 4.20. That is still marginally under the 4.5 floor, but it is an
+// improvement on what it replaces, it is a transient state over a resting colour
+// that measures 5.08, and it keeps the palette to three colours. #FFE97F would
+// clear AA at 4.83 if the ratio ever matters more than the colour.
+//
+// Placed before the .active rule below so the current page keeps its own colour
+// on hover, as it does in light mode.
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+  color: #ffd700;
+}
+
 // Current-page marker. As in light mode, Bootstrap would tint the active item
 // from $link-color; pinned back so the rule beneath inherits the same off-white
 // via `currentColor`. Yellow stays reserved for links, not navigation.
