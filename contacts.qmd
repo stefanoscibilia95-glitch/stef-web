@@ -4,14 +4,11 @@ toc: false
 about:
   template: jolla
   links:
-    - icon: envelope
-      text: Email
-      href: mailto:scibilia@essb.eur.nl
     - icon: person-vcard
       text: ORCID
       href: https://orcid.org/0009-0006-4463-6459
     - icon: mortarboard-fill
-      text: University profile
+      text: Erasmus University page
       href: https://www.eur.nl/en/people/stefano-scibilia
     - icon: linkedin
       text: LinkedIn
@@ -33,3 +30,7 @@ include-in-header:
   - text: |
       <meta name="description" content="How to reach Stefano Scibilia: email, ORCID, university profile, LinkedIn, Bluesky, and X.">
 ---
+
+## [scibilia\@essb.eur.nl](mailto:scibilia@essb.eur.nl)
+
+Email is the best way to reach me. You can also find me here:
