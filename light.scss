@@ -31,15 +31,12 @@ $link-color:  #cc0000;
 
 /*-- scss:rules --*/
 
-// Current-page marker, in brand red. As a graphical element this needs 3:1, not
-// the 4.5:1 that text requires — it measures 4.14 on the band, which is why the
-// underline can stay pure #CC0000 where red *text* on sage could not.
+// Current-page marker. Bootstrap derives its own active colour from $link-color
+// (#8B0000 here), which is a red nobody chose, so the text is pinned to ink. The
+// rule beneath it inherits that same ink via `currentColor` in styles.scss: red
+// and yellow are reserved for links and the email address, never for navigation.
 .navbar .navbar-nav .nav-link.active {
-  // Bootstrap derives its own active colour (#8B0000 here) from $link-color.
-  // That is a fourth red nobody chose, so the text is pinned back to ink and the
-  // rule below is left as the only marker.
   color: #34302A;
-  border-bottom-color: #cc0000;
 }
 
 // The footer sits on the same green band, where #CC0000 would drop to 4.14 and

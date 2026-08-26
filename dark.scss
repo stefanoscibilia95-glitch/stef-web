@@ -21,11 +21,9 @@ $navbar-fg:  #f2eee4;
 
 /*-- scss:rules --*/
 
-// Current-page marker, in brand yellow. As a graphical element this needs 3:1,
-// not 4.5:1 — it measures 4.20 on the red band.
+// Current-page marker. As in light mode, Bootstrap would tint the active item
+// from $link-color; pinned back so the rule beneath inherits the same off-white
+// via `currentColor`. Yellow stays reserved for links, not navigation.
 .navbar .navbar-nav .nav-link.active {
-  // As in light mode: Bootstrap would tint the active item from $link-color.
-  // Pinned back so the rule below is the only marker.
   color: #f2eee4;
-  border-bottom-color: #ffd700;
 }

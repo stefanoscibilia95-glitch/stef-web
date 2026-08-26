@@ -25,6 +25,14 @@ $navbar-padding-y: 0.5rem;
 // Headings are Jost, the geometric sans already used for the name: a Bauhaus
 // display face against a rational serif text face, so hierarchy comes from the
 // pairing rather than from size alone.
+// Both Bootswatch themes @import their own font from Google — cosmo pulls Source
+// Sans Pro, darkly pulls Lato. Neither is used once the stacks below are pinned,
+// but the import still fires on every page load: two render-blocking requests
+// for fonts nobody sees, and every visitor's IP handed to Google. That is the
+// same GDPR problem that made Jost self-hosted in the first place. Bootswatch
+// gates the import on this variable, so setting it false removes it.
+$web-font-path: false;
+
 $font-family-sans-serif: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
 $headings-font-family: "Jost", Futura, "Century Gothic", "Avenir Next", Avenir, "URW Gothic", sans-serif;
 

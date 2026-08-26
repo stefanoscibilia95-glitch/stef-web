@@ -18,7 +18,13 @@ website:
   site-url: "https://stefanoscibilia.com"
   description: "Academic homepage of Stefano Scibilia — research, teaching, and outreach."
   favicon: images/favicon.png
-  search: true
+  # Off deliberately. Quarto's search ships ~145 KB of JavaScript plus an index —
+  # more than every font on the site combined, and more than the profile photo —
+  # to search five pages that are all one navbar click away. It also derives its
+  # own colours from $primary rather than $link-color, including a lightened red
+  # for match highlights, so it kept reintroducing shades outside the three brand
+  # colours. Turning it back on means re-theming it; see _log.md.
+  search: false
   back-to-top-navigation: true
   # Without these, a link shared on Bluesky, X, LinkedIn or Slack renders as a
   # bare URL with no title, summary or image. `image:` is the card thumbnail.
@@ -27,7 +33,7 @@ website:
   image: images/profile.jpg
   navbar:
     # No brand text: it linked to the same place as Home. The site title above is
-    # still used for the browser tab, search index, and link previews.
+    # still used for the browser tab and link previews.
     title: false
     left:
       - href: index.qmd

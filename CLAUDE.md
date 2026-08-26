@@ -178,6 +178,13 @@ pipeline gives the output a content-hashed filename, so an edit always changes t
 URL and can never be served from a stale browser cache — for you or for returning
 visitors. A plain `css: styles.css` caused exactly that bug.
 
+**Bootswatch themes phone home for fonts.** cosmo `@import`s Source Sans Pro from
+Google and darkly imports Lato, whether or not you use them — two render-blocking
+requests per page and every visitor's IP handed to Google, which is the GDPR
+problem that made Jost self-hosted to begin with. Overriding the font stacks does
+*not* stop it. `$web-font-path: false;` in `styles.scss` does. Re-check with
+`grep -rl fonts.googleapis _site` after any theme change.
+
 **Quarto specificity.** Quarto's own rules often carry an element qualifier
 (`div.quarto-about-trestles .about-entity`). A classes-only override silently loses.
 Match the qualifier.
@@ -211,15 +218,20 @@ them from `_sources/stef-biblatex.bib`.
   darkens the ink to `#34302A`. A warm ground carries darker text without
   harshness, so contrast *improved*: 12.2:1 against the white theme's 11.5:1.
 - **The band is brand green `#D3DCBF`.** A pale near-grey band read as dull.
-- **The current page is marked by a 3px underline, not a colour.** This is the
-  rule that keeps the palette to three colours. Coloured *text* must clear 4.5:1,
-  and brand red on the green band reaches only 4.14 — which had previously forced
-  a fourth, darker red into the design. An underline is a *graphical* element and
-  needs just 3:1, so it can stay pure `#CC0000` in light and `#FFD700` in dark.
-  It also satisfies WCAG 1.4.1: state is not signalled by colour alone. Inactive
-  items carry a transparent border of the same width so nothing shifts.
+- **The current page is marked by a 3px underline in the nav text colour.** Not
+  red, not yellow — those are reserved for links and the email address, and using
+  them for navigation muddied what an accent means. The rule inherits the item's
+  own colour via `currentColor`, so it costs no colour at all. It also satisfies
+  WCAG 1.4.1: state is not signalled by colour alone. Inactive items carry a
+  transparent border of the same width so nothing shifts. Note Bootstrap derives
+  its own active tint from `$link-color` (it produced `#8B0000` here), so both
+  mode files pin the active text back explicitly.
 - **The navbar is 600, not the body weight**, which read thin beside Jost
   headings and the heavier band. That face is already self-hosted, so it is free.
+- **Two typefaces, both self-hosted, and no others.** Jost for headings and the
+  name, Source Serif 4 for everything else. `bootstrap-icons` and `anchorjs-icons`
+  are also loaded, but they are symbol sets for the search, theme toggle, contact
+  buttons and heading anchors — not typography.
 - **Body is self-hosted Source Serif 4, headings are Jost.** Four faces (400,
   400i, 600, 600i), latin subset only, ~83 KB total. Geometric sans display
   against a rational screen serif gives real hierarchy; a serif also carries the

@@ -144,3 +144,61 @@ session, and a missed check only costs a stale preview.
 Verified end to end, five cases: allows unrelated commands; allows a render with
 nothing serving; ignores malformed input; blocks a real render against a live
 preview on :4399 with an actionable message; allows again once the preview stops.
+
+---
+
+## 2026-08-26 — palette discipline, typography, and removing search
+
+A pass to reduce the number of things in play rather than add any.
+
+### The palette is now three colours
+
+Red `#CC0000`, yellow `#FFD700`, green `#D3DCBF`, plus warm neutrals. Getting
+there needed two fixes that were not obvious:
+
+- **Bootstrap invents colours.** It derives the active-nav tint from
+  `$link-color` and was rendering `#8B0000` — a red nobody picked. Both mode
+  files now pin the active text explicitly.
+- **A red that failed.** Brand red on the sage band measures 4.14, under the AA
+  floor, which had forced a second darker red (`#A80000`) into the design. Fixed
+  by changing the mechanism, not the colour: the current page is marked by a 3px
+  underline rather than a colour change. An underline is a *graphical* element
+  needing 3:1, not the 4.5:1 text requires. The underline then took the nav text
+  colour via `currentColor` — red and yellow are for links and the email address,
+  not navigation — so it costs no colour at all, and satisfies WCAG 1.4.1 into
+  the bargain.
+
+### Typography
+
+Body is self-hosted Source Serif 4 (four faces, latin subset, ~92 KB), headings
+Jost. Two typefaces, no others.
+
+Auditing that turned up a live privacy leak: **both Bootswatch themes `@import`
+their own font from Google** — cosmo pulls Source Sans Pro, darkly pulls Lato —
+regardless of whether the stacks are overridden. Two render-blocking requests per
+page for fonts nobody sees, and every visitor's IP handed to Google, which is the
+exact GDPR reason Jost was self-hosted in the first place. `$web-font-path: false`
+removes it. Re-check with `grep -rl fonts.googleapis _site` after any theme change.
+
+Dark-mode text moved off pure white. `#FFFFFF` on `#222` is 15.9:1, more than
+double AAA, and that much contrast makes light type bleed into the dark ground —
+halation, worse for anyone with astigmatism. `#F2EEE4` gives 13.7:1: still past
+AAA, visibly softer, and warm enough to echo light mode rather than add a colour.
+
+### Search removed
+
+`search: false`. It shipped ~145 KB of JavaScript plus an index — more than every
+font combined, more than the profile photo — to search five pages that are all one
+navbar click away. It also derived its colours from `$primary` rather than
+`$link-color`, so the results panel stayed cosmo blue and, once retinted,
+generated a lightened red of its own. Setting `$primary` does work if it is ever
+wanted back; the objection was that it did not earn its weight.
+
+Quarto still emits `search.json` and two empty container divs. Both are inert with
+the JavaScript gone.
+
+### Favicon
+
+Ink `S` on a brand-green circle, replacing white-on-red. Honest trade: the sage
+disc reads well on a dark tab but nearly disappears on a light one, leaving a
+floating dark `S`. Still legible, less present. Chosen to match the light theme.
