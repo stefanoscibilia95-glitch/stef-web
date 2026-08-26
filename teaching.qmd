@@ -12,7 +12,7 @@ include-in-header:
       <meta name="description" content="Bachelor's thesis supervision in the Management of International Social Challenges programme at Erasmus University Rotterdam.">
 ---
 
-## Thesis supervision modules
+## Thesis supervision seminars
 
 ### 2025
 

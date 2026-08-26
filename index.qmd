@@ -55,9 +55,9 @@ about:
 
 ## Profile
 
-I am a PhD candidate in political science at Erasmus University Rotterdam. I work on EU governance and socio-economic reform processes in Member States.
+I am a PhD candidate in political science at Erasmus University Rotterdam. I work on European Union governance and socio-economic reform processes in EU Member States.
 
-My research is focused on understanding to what extent different configurations of domestic politics affect the Europeanization of social policy.
+My research is focused on understanding to what extent different configurations of domestic politics affect the Europeanization of social policy. I have conducted in-depth process tracing of labour market and pension reforms in Italy and Spain. I have focused on the "domestic effects" of the [European Semester](https://reforms-investments.ec.europa.eu/european-semester_en), the [Recovery and Resilience Facility and the National Recovery and Resilience Plans](https://reforms-investments.ec.europa.eu/technical-support-instrument-0/recovery-and-resilience-plans_en), the [newly reformed SGP](https://economy-finance.ec.europa.eu/economic-governance-framework/what-economic-governance-framework/evolution-eu-economic-governance/new-economic-governance-framework_en) and the [National Medium-term Fiscal-structural Plans](https://economy-finance.ec.europa.eu/economic-governance-framework/stability-and-growth-pact/preventive-arm/national-medium-term-fiscal-structural-plans_en).
 
 ## Currently
 
@@ -72,4 +72,4 @@ I am in the final year of my PhD, finishing in June 2027.
 
 ## PhD research project
 
-My work is part of the research project [*Towards a resilient European Union? Post-pandemic economic governance amidst politicisation*](https://app.dimensions.ai/details/grant/grant.13760545)*,* funded by the Dutch Research Council (NWO), with prof. Markus Haverland as principal investigator.
+My work is part of the research project [*Towards a resilient European Union? Post-pandemic economic governance amidst politicisation*](https://app.dimensions.ai/details/grant/grant.13760545) (PEGAP)*,* funded by the Dutch Research Council (NWO). My supervisors are prof. Markus Haverland (PEGAP's principal investigator), dr. Asya Zhelyazkova, and dr. Pieter Tuytens.

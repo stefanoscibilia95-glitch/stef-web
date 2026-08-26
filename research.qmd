@@ -48,13 +48,13 @@ include-in-header:
 
 ### 2026
 
-- 1 manuscript for *International Environmental Agreements: Politics, Law and Economics*
+- 1 manuscript for *International Environmental Agreements: Politics, Law and Economics*.
 
 ### 2025
 
-- 1 manuscript for *Journal of Ethnic and Migration Studies*
+- 1 manuscript for *Journal of Ethnic and Migration Studies*.
 
-- 1 manuscript for *Journal of European Public Policy*
+- 1 manuscript for *Journal of European Public Policy*.
 
 ## Methods training
 
