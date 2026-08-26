@@ -202,3 +202,54 @@ the JavaScript gone.
 Ink `S` on a brand-green circle, replacing white-on-red. Honest trade: the sage
 disc reads well on a dark tab but nearly disappears on a light one, leaving a
 floating dark `S`. Still legible, less present. Chosen to match the light theme.
+
+---
+
+## 2026-08-26 (cont.) — the design system, closed out
+
+The rest of the styling pass. Everything below was about removing choices rather
+than adding them.
+
+### Which face goes where
+
+Jost for the name, the navbar and every heading; Source Serif 4 for body,
+citations and the TOC. The rule is **scan versus read** — if you navigate by it,
+it is Jost. The navbar had been in the body serif, which made it read as a
+sentence rather than a set of destinations.
+
+The rejected alternative was Jost for the name only, everything else serif. It
+loses on two counts: headings and body collapse into one voice, so hierarchy
+comes only from size; and it means self-hosting a whole typeface for one string.
+A pairing should do work.
+
+### Hovers, and three accepted contrast shortfalls
+
+Light mode already had a red hover nobody designed: Bootstrap shades `$link-color`
+to `#8B0000` at 80% opacity. It looked good and measured 5.38 — but it was a
+fourth red. Dark mode meanwhile had darkly's near-white at 80%, measuring **4.00**
+— already under AA, and barely legible as a state change at all.
+
+Both are now the brand colour outright: `#CC0000` on green at 4.14, `#FFD700` on
+red at 4.20. Both under the 4.5 floor, both accepted on the same reasoning as the
+footer link: transient states sitting over resting colours of 9.21 and 5.08, and
+the alternative in each case was a colour outside the palette. The dark one is an
+improvement on what it replaced regardless.
+
+Ordering matters: the `:hover` rule must come **before** `.nav-link.active` in
+each mode file. Same specificity, so the later rule wins, and that is what keeps
+the current page from shifting colour when the pointer crosses it.
+
+### Smaller things
+
+- Footer "Quarto" link back to brand red on the green band (4.14, accepted). The
+  band stays; moving the footer to the page colour would have fixed the ratio but
+  changed the layout.
+- Theme toggle enlarged to 30×28 with a `currentColor` pill border, so it reads
+  as a control. It was a bare 16px glyph, easy to miss entirely.
+
+### Where the palette actually landed
+
+Three brand colours, no derived shades left in the rendered output. Getting there
+meant overriding Bootstrap three separate times — it generates its own active
+tint, its own hover shade, and its own search accent, none of which follow
+`$link-color`. **Assume it will invent a colour anywhere you have not pinned one.**

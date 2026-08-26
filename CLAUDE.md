@@ -233,14 +233,14 @@ them from `_sources/stef-biblatex.bib`.
   are the serif. The test is whether you *scan* it or *read* it. This is also why
   the navbar is not the body face — a nav row set in the reading serif reads as a
   sentence rather than a set of destinations.
-- **Two accepted contrast shortfalls, both deliberate.** The footer's "Quarto"
-  link is brand red on the green band at 4.14, and the dark-mode navbar hover is
-  brand yellow on red at 4.20 — both under the 4.5 floor. Kept because the
-  alternatives were a fourth and fifth colour, both are transient or incidental
-  (one 12px courtesy link; a hover state whose resting colour measures 5.08), and
-  the hover *improves* on darkly's default, which measured 4.00. Note the light
-  navbar hover is fine at 5.38, because Bootstrap darkens it to `#8B0000` first —
-  straight brand red there would be 4.14. Do not reuse these ratios for content.
+- **Three accepted contrast shortfalls, all deliberate.** Both navbar hovers
+  (brand red on green, 4.14; brand yellow on red, 4.20) and the footer's "Quarto"
+  link (4.14) sit under the 4.5 floor. Each was a choice between the exact brand
+  colour and a derived shade nobody picked — Bootstrap wanted `#8B0000` for the
+  light hover and near-white for the dark one. The colour won because these are
+  transient or incidental: hovers sit over resting colours of 9.21 and 5.08, and
+  the footer is one 12px courtesy link. The dark hover also *improves* on
+  darkly's default, which measured 4.00. **Never reuse these ratios for content.**
 - **Two typefaces, both self-hosted, and no others.** Jost for headings and the
   name, Source Serif 4 for everything else. `bootstrap-icons` and `anchorjs-icons`
   are also loaded, but they are symbol sets for the search, theme toggle, contact
