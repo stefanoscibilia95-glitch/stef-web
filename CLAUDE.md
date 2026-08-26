@@ -228,6 +228,16 @@ them from `_sources/stef-biblatex.bib`.
   mode files pin the active text back explicitly.
 - **The navbar is 600, not the body weight**, which read thin beside Jost
   headings and the heavier band. That face is already self-hosted, so it is free.
+- **Which face goes where: Jost for wayfinding, Source Serif for reading.** The
+  name, the navbar and every heading are Jost; body text, citations and the TOC
+  are the serif. The test is whether you *scan* it or *read* it. This is also why
+  the navbar is not the body face — a nav row set in the reading serif reads as a
+  sentence rather than a set of destinations.
+- **One accepted contrast failure, on purpose.** The footer's "Quarto" link is
+  brand red on the green band: 4.14, under the 4.5 floor for 12px text. Kept
+  because the alternatives were a fourth colour or moving the footer off the
+  band, and it is a single courtesy link carrying no content. Do not reuse that
+  ratio anywhere that matters.
 - **Two typefaces, both self-hosted, and no others.** Jost for headings and the
   name, Source Serif 4 for everything else. `bootstrap-icons` and `anchorjs-icons`
   are also loaded, but they are symbol sets for the search, theme toggle, contact

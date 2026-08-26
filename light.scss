@@ -42,15 +42,15 @@ $link-color:  #cc0000;
 // The footer sits on the same green band, where #CC0000 would drop to 4.14 and
 // fail as text. Ink plus an underline keeps it legible and keeps the palette to
 // three brand colours.
+// Brand red on the green band, measured at 4.14 — under the 4.5 AA floor for
+// text this size. Accepted deliberately: it is one 12px courtesy link in the
+// footer, and the alternatives were a fourth colour or dropping the band. Do not
+// copy this ratio anywhere that carries actual content.
 .nav-footer a {
-  color: #34302A;
-  text-decoration: underline;
+  color: #cc0000;
 }
 
-// Hover thickens the rule rather than changing the colour: #CC0000 would drop to
-// 4.14 here and fail as text, and every other hue would be a fourth colour.
 .nav-footer a:hover {
-  color: #34302A;
+  color: #cc0000;
   text-decoration: underline;
-  text-decoration-thickness: 2px;
 }

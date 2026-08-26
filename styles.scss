@@ -218,13 +218,40 @@ div.quarto-about-trestles .about-entity .about-link:hover {
    dark, #757575 on light), which reads as disabled text rather than a link. Use
    the theme's own link colour instead, so it picks up yellow in dark mode and
    blue in light automatically. The surrounding footer text is already white. */
+/* The light/dark toggle shipped as a bare 16px glyph with no affordance — easy
+   to miss entirely, and the two modes are one of the better things about the
+   site. Larger glyph plus a pill border so it reads as a control. `currentColor`
+   keeps it on the nav text colour, so it adds nothing to the palette. */
+.quarto-color-scheme-toggle {
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  opacity: 0.85;
+}
+
+.quarto-color-scheme-toggle:hover {
+  opacity: 1;
+}
+
+.quarto-color-scheme-toggle .bi::before {
+  height: 1.15rem;
+  width: 1.15rem;
+  background-size: 1.15rem 1.15rem;
+}
+
 /* --- Navigation ---------------------------------------------------------- */
 
 /* The navbar sat at the body weight, which read thin beside Jost headings and
    the heavier band. 600 is the semibold face already self-hosted, so this costs
    no extra download. */
 .navbar .navbar-nav .nav-link {
-  font-weight: 600;
+  // Jost, like the headings and the name — not the body serif. The rule the site
+  // follows is: Jost for anything you navigate or scan by, Source Serif for
+  // anything you read. Navigation is wayfinding, so it belongs to the first
+  // group. It also stops the navbar reading as a run of body text.
+  font-family: $headings-font-family;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   border-bottom: 3px solid transparent;
   padding-bottom: 0.15rem;
 }
