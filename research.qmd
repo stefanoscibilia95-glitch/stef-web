@@ -18,7 +18,7 @@ include-in-header:
 
 - **Scibilia, S.,** and Haverland, M. (2026). *From external to internal constraints? Nominal compliance and the Europeanization of socio-economic reforms under the Recovery and Resilience Facility in Spain*.
 
-## Conference papers
+## Conference activity
 
 ### 2026
 
