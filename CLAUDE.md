@@ -263,9 +263,35 @@ them from `_sources/stef-biblatex.bib`.
   dark tab, and white-background variants dissolve into a light one. The previous
   yellow-on-black went muddy as the strokes thinned.
 - **Affiliation order** is narrow → broad, with the Oxford comma:
-  PhD Candidate / Policy, Politics, and Society / Dept. of Public Administration and
-  Sociology / Erasmus University Rotterdam. This matches EUR and Pure; the CV's
-  "Politics, Policy, and Society" is wrong.
+  PhD Candidate / Policy, Politics, and Society / Erasmus School of Social and
+  Behavioural Sciences / Erasmus University Rotterdam. The CV's "Politics, Policy,
+  and Society" is wrong. The Dept. of Public Administration and Sociology used to
+  sit between the group and the School and was removed in September 2026 — the
+  department is no longer used, so do not put it back.
+- **The landing column is one measure: photo and name are both ~95% of it.**
+  `image-width: 95%` in `index.qmd` and `font-size: 1.92rem` on the name give
+  331.9px and 329.5px in the 349.5px desktop column — equal to within 3px, which is
+  what stops the column looking like three unrelated objects. Both are percentages
+  or rem, so they track the column instead of being pinned to it.
+- **The name has two sizes because the column has two widths.** 349.5px on desktop,
+  but only 322px on a 390px phone. 1.8rem is the phone value, 1.92rem the desktop
+  one; each leaves ~5%. **Do not raise the desktop value past 1.92rem.** Jost would
+  still fit, but the name renders in a fallback for the first ~100ms of a cold load
+  and Futura — first in the stack, on every Mac — is 6% wider: at 1.94rem it is
+  350.3px against a 349.5px column and wraps, so the name visibly reflows as the
+  webfont swaps in.
+- **The affiliation breaks with `&nbsp;`, not `<br>`, and that is deliberate.**
+  "Erasmus School of Social and Behavioural Sciences" is 390px against 349.5px of
+  desktop column, so it has to break there — but it fits on one line from ~460px
+  viewport upward. Non-breaking spaces bind it into two units, "Erasmus School of
+  Social" and "and Behavioural Sciences", so the browser breaks between them when
+  space is short and leaves it on one line when it is not. A `<br>` would force the
+  break everywhere, including on tablets where it is not needed. The entities are
+  visible in source, so the GitHub phone-app route still works; if someone retypes
+  them as plain spaces it degrades to an ordinary soft wrap rather than breaking.
+  Do not try to fix any of this by widening the column or shrinking the type — that
+  is what failed before. Reasoning also sits above the `align-items: flex-start`
+  block in `styles.scss`.
 
 ## Privacy
 

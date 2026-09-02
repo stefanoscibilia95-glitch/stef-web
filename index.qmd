@@ -1,6 +1,6 @@
 ---
 title: "Stefano Scibilia"
-subtitle: "PhD Candidate<br>Policy, Politics, and Society<br>Erasmus School of Social and Behavioural Sciences<br>Erasmus University Rotterdam"
+subtitle: "PhD Candidate<br>Policy, Politics, and Society<br>Erasmus&nbsp;School&nbsp;of&nbsp;Social and&nbsp;Behavioural&nbsp;Sciences<br>Erasmus University Rotterdam"
 # Social-card text only. A plain `description:` would ALSO print on the page, under the affiliation, duplicating the Profile paragraph. Setting it here keeps it in the metadata. Needed because Quarto otherwise derives the card text from the subtitle, stripping the <br> tags without inserting spaces and producing "PhD CandidatePolicy, Politics, and SocietyDept. of...".
 open-graph:
   description: "PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States."
@@ -47,7 +47,7 @@ about:
   template: trestles
   image: images/profile.jpg
   image-shape: rounded
-  image-width: 14em
+  image-width: 95%
   links:
     - text: scibilia@essb.eur.nl
       href: mailto:scibilia@essb.eur.nl

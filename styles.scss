@@ -98,11 +98,19 @@ h3 {
   margin-top: 0.5rem;
 }
 
-/* The affiliation runs to four lines; Quarto's default 42% left column wraps the
-   department name. 46% fits it with room to spare while leaving the bio column
-   wide enough to read comfortably. The `div` qualifier is needed to match the
-   specificity of Quarto's own `div.quarto-about-trestles .about-entity`.
-   Scoped to wide screens only — below this the two columns stack anyway. */
+/* Left column width. Quarto's default is 42%; 46% leaves the bio column wide
+   enough to read comfortably.
+
+   This number is no longer load-bearing, and the comment that used to live here
+   claimed it "fits with room to spare" — it did not. It was measured against the
+   old "Dept. of Public Administration and Sociology" (326px in 333px: 7px of
+   slack), so the first longer affiliation blew straight through it. Line breaks
+   in the affiliation are now placed by hand in index.qmd, so no string has to fit
+   any particular width. Do not re-tune this to fit a name.
+
+   The `div` qualifier is needed to match the specificity of Quarto's own
+   `div.quarto-about-trestles .about-entity`. Scoped to wide screens only — below
+   this the two columns stack anyway. */
 @media (min-width: 992px) {
   div.quarto-about-trestles .about-entity {
     flex: 0 0 46%;
@@ -180,11 +188,27 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 700;
-  /* At Quarto's default 34px the caps need ~341px in a 349px column on the
-     widest fallback — 8px of slack, which wraps on any machine whose metrics
-     differ slightly. 1.8rem leaves ~14%. Caps read larger than lowercase at the
-     same size, so this does not look smaller than before. */
+  /* Sized to leave ~5% headroom in the column, which means two sizes: the
+     trestles column is 349.5px on desktop but only 322px on a 390px phone, and a
+     single size cannot leave 5% in both. 1.8rem is the phone value (308.9px in
+     322px = 96%); the desktop value is set in the media query below.
+
+     Do not raise this past 1.92rem. Jost would still fit, but the name renders in
+     a fallback for the first ~100ms of a cold load, and Futura — the first
+     fallback, present on every Mac — is 6% wider than Jost: at 1.94rem it measures
+     350.3px against a 349.5px column and wraps, so the name visibly reflows as the
+     webfont swaps in. 1.92rem keeps Futura at 346.7px, under the column, so no
+     size in the stack ever wraps. Measured, not estimated. */
   font-size: 1.8rem;
+}
+
+@media (min-width: 992px) {
+  .quarto-about-trestles #title-block-header .title {
+    /* 329.5px in the 349.5px desktop column — 94.3%. Paired with
+       `image-width: 95%` in index.qmd, so the photo and the name are the same
+       width to within 3px and the column reads as one measure. */
+    font-size: 1.92rem;
+  }
 }
 
 /* Contact details on the landing page: Quarto renders `about: links:` as bordered
@@ -212,6 +236,55 @@ div.quarto-about-trestles .about-entity .about-link {
 div.quarto-about-trestles .about-entity .about-link:hover {
   color: var(--bs-link-hover-color);
   text-decoration: underline;
+}
+
+/* Flush left, not centred — the landing-page column only.
+
+   The affiliation runs five lines, and one of them ("Erasmus School of Social and
+   Behavioural Sciences") measures 369px against 333px of usable column. It cannot
+   sit on one line at any size worth reading: it would need 0.86rem, or a 51%
+   column taken out of the bio. So it has to break — and centred, the tail of a
+   broken line floats under its own line and reads as a separate affiliation
+   rather than a continuation. Flush left gives every line the same starting edge,
+   so a break reads as a break, and the eye gets one place to look instead of five.
+
+   The break point is placed by hand in index.qmd's `subtitle`, not left to the
+   browser. A hanging indent would be tidier but does not work across <br>:
+   `text-indent` applies to the first line of a *block*, and <br> does not start
+   one, so it indents lines 2-5 and leaves line 1 sticking out. Verified in a
+   mock-up, not assumed.
+
+   This does not affect the name: text-align and align-items do not change line
+   breaking, and "STEFANO SCIBILIA" measures 293px in 333px — 40px of headroom, no
+   wrap below 2.05rem.
+
+   Placed after the .about-links rules above on purpose: same specificity, so it
+   has to come later to win. Wide screens only — below 992px the columns stack and
+   Quarto's centring is right again. */
+@media (min-width: 992px) {
+  div.quarto-about-trestles .about-entity {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  div.quarto-about-trestles .about-entity .about-links {
+    align-items: flex-start;
+  }
+}
+
+/* Breathing room above the photo once the columns stack.
+
+   Below 992px the photo becomes the first thing under the navbar, and Quarto
+   leaves only 13.1px there — a solid image butted against the solid navbar band,
+   which reads as glued rather than spaced. Every other page on the site leaves
+   29.1px between the navbar and its title, so 1rem brings the landing page to
+   30.1px and into line with them; it is not a number picked by eye.
+
+   Desktop is untouched — the gap there is already 55.6px. */
+@media (max-width: 991.98px) {
+  div.quarto-about-trestles .about-entity {
+    padding-top: 1rem;
+  }
 }
 
 /* Footer links. Quarto renders these in a muted grey in both themes (#8A8A8A on
