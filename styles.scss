@@ -240,23 +240,18 @@ div.quarto-about-trestles .about-entity .about-link:hover {
 
 /* Flush left, not centred — the landing-page column only.
 
-   The affiliation runs five lines, and one of them ("Erasmus School of Social and
-   Behavioural Sciences") measures 369px against 333px of usable column. It cannot
-   sit on one line at any size worth reading: it would need 0.86rem, or a 51%
-   column taken out of the bio. So it has to break — and centred, the tail of a
-   broken line floats under its own line and reads as a separate affiliation
-   rather than a continuation. Flush left gives every line the same starting edge,
-   so a break reads as a break, and the eye gets one place to look instead of five.
+   Three lines of affiliation, each fitting on its own: 114px, 261px and 236px in
+   a 349.5px column, 322px on a phone. Centred, three lines of different lengths
+   begin at three different x-positions and the eye has to re-find the left edge
+   on each one; flush left gives it a single edge shared with the photo and the
+   name.
 
-   The break point is placed by hand in index.qmd's `subtitle`, not left to the
-   browser. A hanging indent would be tidier but does not work across <br>:
-   `text-indent` applies to the first line of a *block*, and <br> does not start
-   one, so it indents lines 2-5 and leaves line 1 sticking out. Verified in a
-   mock-up, not assumed.
-
-   This does not affect the name: text-align and align-items do not change line
-   breaking, and "STEFANO SCIBILIA" measures 293px in 333px — 40px of headroom, no
-   wrap below 2.05rem.
+   This block used to carry a much longer argument, because the affiliation
+   spelled out "Erasmus School of Social and Behavioural Sciences" — 390px against
+   349.5px of column. That could not hold one line at any readable size, so it
+   always broke in two, and the break had to be bound with &nbsp; to land
+   somewhere sensible. Abbreviating it to "(ESSB)" on the group line deleted the
+   problem instead of working around it. **Do not restore the full School name.**
 
    Placed after the .about-links rules above on purpose: same specificity, so it
    has to come later to win. Wide screens only — below 992px the columns stack and

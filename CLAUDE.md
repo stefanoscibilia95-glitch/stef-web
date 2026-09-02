@@ -262,12 +262,11 @@ them from `_sources/stef-biblatex.bib`.
   alternatives failed there — a black letter with no background is invisible on a
   dark tab, and white-background variants dissolve into a light one. The previous
   yellow-on-black went muddy as the strokes thinned.
-- **Affiliation order** is narrow → broad, with the Oxford comma:
-  PhD Candidate / Policy, Politics, and Society / Erasmus School of Social and
-  Behavioural Sciences / Erasmus University Rotterdam. The CV's "Politics, Policy,
-  and Society" is wrong. The Dept. of Public Administration and Sociology used to
-  sit between the group and the School and was removed in September 2026 — the
-  department is no longer used, so do not put it back.
+- **Affiliation order** is narrow → broad, with the Oxford comma, and it is three
+  lines: PhD Candidate / Policy, Politics, and Society (ESSB) / Erasmus University
+  Rotterdam. The CV's "Politics, Policy, and Society" is wrong. The Dept. of Public
+  Administration and Sociology used to sit under the group and was removed in
+  September 2026 — the department is no longer used, so do not put it back.
 - **The landing column is one measure: photo and name are both ~95% of it.**
   `image-width: 95%` in `index.qmd` and `font-size: 1.92rem` on the name give
   331.9px and 329.5px in the 349.5px desktop column — equal to within 3px, which is
@@ -280,18 +279,15 @@ them from `_sources/stef-biblatex.bib`.
   and Futura — first in the stack, on every Mac — is 6% wider: at 1.94rem it is
   350.3px against a 349.5px column and wraps, so the name visibly reflows as the
   webfont swaps in.
-- **The affiliation breaks with `&nbsp;`, not `<br>`, and that is deliberate.**
-  "Erasmus School of Social and Behavioural Sciences" is 390px against 349.5px of
-  desktop column, so it has to break there — but it fits on one line from ~460px
-  viewport upward. Non-breaking spaces bind it into two units, "Erasmus School of
-  Social" and "and Behavioural Sciences", so the browser breaks between them when
-  space is short and leaves it on one line when it is not. A `<br>` would force the
-  break everywhere, including on tablets where it is not needed. The entities are
-  visible in source, so the GitHub phone-app route still works; if someone retypes
-  them as plain spaces it degrades to an ordinary soft wrap rather than breaking.
-  Do not try to fix any of this by widening the column or shrinking the type — that
-  is what failed before. Reasoning also sits above the `align-items: flex-start`
-  block in `styles.scss`.
+- **The School is abbreviated to "(ESSB)" on purpose — do not spell it out.**
+  Written in full, "Erasmus School of Social and Behavioural Sciences" is 390px
+  against a 349.5px column: it cannot hold one line at any readable size, so it
+  always breaks in two, and it looks wrong wherever the break is placed. It was
+  tried both ways, with `<br>` and with `&nbsp;` bindings, before being folded into
+  the group line instead. At 261px "Policy, Politics, and Society (ESSB)" sits on
+  one line at every width, phone included. Every affiliation line now fits, so
+  there is no break to manage — keep it that way rather than widening the column or
+  shrinking the type, both of which failed.
 
 ## Privacy
 
