@@ -20,3 +20,11 @@ SS_Academic_CV_*.zip
 
 # Full-resolution photo originals (the web-sized copies in images/ are committed)
 /_sources/originals/
+
+# LinkedIn exports carry a home address and a personal email. Never commit them.
+*linkedin*
+*LinkedIn*
+
+# The application CV (built under _sources/cv/) carries a phone number and the
+# referees' contact details. It is sent as an attachment, never published.
+/_sources/cv/
