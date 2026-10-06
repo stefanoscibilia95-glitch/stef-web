@@ -145,16 +145,37 @@ h3 {
   src: url("fonts/apfel-grotezk-500-latin.woff2") format("woff2");
 }
 /* The 700 face is used only by the name, which is sized to 95% of its column.
-   Arial Bold and Helvetica Bold — the fallbacks — are 8% wider than Apfel Grotezk
-   Fett, so a swap-in from a fallback would wrap the name for the first ~100ms of a
-   cold load. `block` holds the text invisible until the 15 KB file arrives (or 3s,
-   after which the fallback shows), so the name only ever appears in Apfel. */
+   Two things keep that from jumping while the file loads on a first visit:
+   index.qmd preloads this file (so it is fetched with the HTML, not after the
+   CSS), and the stand-in face below is Arial Bold scaled to Apfel Fett's width. */
 @font-face {
   font-family: "Apfel Grotezk";
   font-style: normal;
   font-weight: 700;
-  font-display: block;
+  font-display: swap;
   src: url("fonts/apfel-grotezk-700-latin.woff2") format("woff2");
+}
+
+/* Stand-in for the name while the real face loads: the visitor's own Arial Bold
+   (Helvetica Bold on a Mac has the same metrics), shrunk so that "Stefano
+   Scibilia" is exactly as wide as in Apfel Grotezk Fett. The name is therefore
+   drawn at once, on one line, and only the letter shapes change when Apfel
+   arrives — the line does not move. Numbers come from the font files:
+   size-adjust = Apfel glyph width / Arial glyph width = 6.8760 / 7.4463 em
+   (letter-spacing is not scaled by size-adjust, so it is left out of both);
+   the vertical overrides are Apfel's hhea metrics divided by size-adjust.
+   Browsers that lack size-adjust (Safari before 17) ignore the descriptor and
+   fall back to plain Arial Bold, i.e. the pre-October-2026 behaviour; Android
+   and Linux have no Arial and skip this face entirely. */
+@font-face {
+  font-family: "Apfel Grotezk Fallback";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica-Bold"), local("Helvetica Bold");
+  size-adjust: 92.34%;
+  ascent-override: 100.93%;
+  descent-override: 30.32%;
+  line-gap-override: 7.58%;
 }
 
 /* Ronzino, latin subset, four faces: Regular, Oblique, Bold, Bold Oblique. The
@@ -195,9 +216,11 @@ h3 {
    on Research, Teaching, Outreach and Contacts are untouched.
 
    Mixed case, not caps: Stefano's choice when the display face changed (October
-   2026). A touch of tracking (0.01em) keeps the bold shapes from touching. */
+   2026). A touch of tracking (0.01em) keeps the bold shapes from touching.
+   The stack puts the width-matched stand-in (see its @font-face) right after
+   Apfel, so a first paint before the webfont lands is the same width. */
 .quarto-about-trestles #title-block-header .title {
-  font-family: $headings-font-family;
+  font-family: "Apfel Grotezk", "Apfel Grotezk Fallback", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: none;
   letter-spacing: 0.01em;
   font-weight: 700;

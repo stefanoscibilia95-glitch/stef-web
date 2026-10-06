@@ -290,9 +290,13 @@ them from `_sources/stef-biblatex.bib`.
   `clamp(2.01rem, 6.179vw − 27.19px, 2.76rem)` on desktop, derived
   from the photo's width at 992 and 1199 so the two stay equal. Do not replace the
   clamp with one fixed size: at 992px the 1199px size wraps the name onto two
-  lines. Helvetica Bold and Arial Bold, the fallbacks, are within a few percent of
-  Apfel Grotezk Fett's width, so the ~100ms a cold load spends in a fallback cannot
-  push a 95%-wide name past the column.
+  lines. Arial Bold and Helvetica Bold, the fallbacks, are 8% *wider* than Apfel
+  Grotezk Fett, which would wrap a 95%-wide name during the ~100ms a cold load
+  spends in a fallback. Two things prevent it: `index.qmd` preloads the Fett file
+  so it arrives with the HTML, and `styles.scss` defines "Apfel Grotezk Fallback",
+  the visitor's Arial Bold with `size-adjust: 92.34%` so it is exactly Apfel's
+  width; the name's stack lists it right after Apfel. The real face uses
+  `font-display: swap`, so the text is never hidden. Keep the three together.
 - **The School is abbreviated to "(ESSB)" on purpose — do not spell it out.**
   Written in full, "Erasmus School of Social and Behavioural Sciences" is 390px
   against a 349.5px column: it cannot hold one line at any readable size, so it

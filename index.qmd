@@ -9,6 +9,7 @@ toc: true
 include-in-header:
   - text: |
       <meta name="description" content="PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States.">
+      <link rel="preload" href="site_libs/bootstrap/fonts/apfel-grotezk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
       <script type="application/ld+json">
       {
         "@context": "https://schema.org",
