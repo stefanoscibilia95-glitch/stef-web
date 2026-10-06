@@ -153,7 +153,7 @@ subtitle under the title, which is why it was removed in the first place.
 |---|---|
 | `index.qmd` | Landing page (Quarto `about: trestles`) |
 | `research.qmd` `teaching.qmd` `outreach.qmd` `contacts.qmd` | Content pages |
-| `cv.qmd` + `cv.pdf` | CV page: embeds the PDF, link only on phones. **`cv.pdf` is the stripped website copy** from `_sources/cv/build.sh` (no phone, no referees), never the application CV |
+| `cv.qmd` + `cv.pdf` | CV page, **currently hidden** (three commented lines in `_quarto.yml`). Embeds the PDF, link only on phones. **`cv.pdf` is the stripped website copy** from `_sources/cv/build.sh` (no phone, no referees), never the application CV |
 | `404.qmd` | Not-found page; **links must stay absolute** (`/research.html`) because it is served from any depth |
 | `styles.scss` | All custom CSS (theme layer, both light and dark) |
 | `dark.scss` | Dark-mode SCSS variables only |

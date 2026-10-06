@@ -116,7 +116,10 @@ seminars, or guest lectures get added, use this shape:
 **outreach.qmd** — still entirely placeholder; nothing in the CV fills it. Consider
 hiding it from the navbar until there is real content.
 
-**cv.qmd** — embeds `cv.pdf` (project root, listed under `project: resources:`) with
+**cv.qmd** — **hidden from the site since 6 October 2026** while Stefano updates the CV:
+`_quarto.yml` excludes it from `render:` and has the resource line and the navbar entry
+commented out; the files stay in the repo. Re-enabling is those three lines.
+It embeds `cv.pdf` (project root, listed under `project: resources:`) with
 `<object>` and offers a download link above it. `styles.scss` hides the embed below
 768px because phones do not render inline PDFs (iOS Safari shows one unscrollable page,
 Android Chrome nothing), so there the link is the whole page. `cv.pdf` is the *website

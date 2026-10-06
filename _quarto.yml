@@ -6,6 +6,10 @@ project:
   # a public page at /CLAUDE.html and show up in search and the sitemap.
   render:
     - "*.qmd"
+    # CV page hidden while the CV is being updated (October 2026). To put it back:
+    # delete the next line, and uncomment `- cv.pdf` under resources and the
+    # `Curriculum vitae` navbar entry below.
+    - "!cv.qmd"
   resources:
     - CNAME
     # SIL OFL 1.1 requires the licence to travel with the font wherever it is
@@ -14,7 +18,8 @@ project:
     - fonts/OFL-SourceSerif4.txt
     # The website copy of the CV, built by _sources/cv/build.sh. It is the stripped
     # render (no phone number, no referees) — never the application CV.
-    - cv.pdf
+    # Hidden for now, see `render:` above.
+    # - cv.pdf
 
 website:
   title: "Stefano Scibilia"
@@ -47,8 +52,9 @@ website:
         text: Teaching
       - href: outreach.qmd
         text: Outreach
-      - href: cv.qmd
-        text: Curriculum vitae
+      # Hidden for now, see `render:` above.
+      # - href: cv.qmd
+      #   text: Curriculum vitae
       - href: contacts.qmd
         text: Contacts
 
