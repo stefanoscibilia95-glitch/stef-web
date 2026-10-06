@@ -24,17 +24,20 @@
   set document(title: content-to-string(name) + " — Curriculum vitae",
                author: content-to-string(name))
   set text(font: font, size: fontsize, hyphenate: auto)
-  // `spacing` is the gap between paragraphs and between consecutive entries (pandoc
-  // writes every entry as its own one-item list), so it doubles as the entry spacing.
-  set par(justify: false, leading: 0.55em, spacing: 8pt)
+  // One vertical scale, built on the 6pt leading (0.55em at 11pt): entries and
+  // paragraphs 9pt apart (1.5×), sub-headings 12pt above / 6pt below (2× / 1×),
+  // section titles 21pt above / 9pt below (3.5× / 1.5×). `spacing` is the gap
+  // between paragraphs and between consecutive entries (pandoc writes every entry
+  // as its own one-item list), so it doubles as the entry spacing.
+  set par(justify: false, leading: 0.55em, spacing: 9pt)
   show link: set text(fill: rgb("#1F3A5F"))
 
   // Quarto shifts heading levels down by one for Typst, so ## in cv.qmd arrives as
   // level 1 and ### as level 2.
   // Section titles (## in cv.qmd): Jost caps, letterspaced, over a hairline.
   show heading.where(level: 1): it => {
-    v(13pt, weak: true)
-    block(breakable: false, below: 7pt, stack(dir: ttb, spacing: 3pt,
+    v(21pt, weak: true)
+    block(breakable: false, below: 9pt, stack(dir: ttb, spacing: 4pt,
       // Typst registers the Mittel OTF as its own family, "Apfel Grotezk Mittel"
       // (quarto typst fonts --font-path fonts), while Fett sits under "Apfel Grotezk".
       text(font: "Apfel Grotezk Mittel", weight: 500, size: 9.5pt, tracking: 0.06em, upper(it.body)),
@@ -42,8 +45,8 @@
   }
   // Sub-headings (### in cv.qmd): bold, never separated from what follows.
   show heading.where(level: 2): it => {
-    v(7pt, weak: true)
-    block(breakable: false, below: 3pt, text(weight: 600, size: fontsize, it.body))
+    v(12pt, weak: true)
+    block(breakable: false, below: 6pt, text(weight: 700, size: fontsize, it.body))
   }
   // Dated entries. In cv.qmd each entry is a definition list: the date is the term,
   // the entry the definition. Each item becomes a two-column row, and no entry is
@@ -67,9 +70,9 @@
   ])
 
   // ---- Header
-  text(font: "Apfel Grotezk", weight: 700, size: 24pt, tracking: 0.01em, name)
-  v(5pt)
-  if position != none { text(size: 12pt, style: "italic", position); v(7pt) }
+  text(font: "Apfel Grotezk", weight: 700, size: 30pt, tracking: 0.01em, name)
+  v(8pt)
+  if position != none { text(size: 12pt, style: "italic", position); v(9pt) }
   if affiliation != none { affiliation; linebreak() }
   if address != none { address; linebreak() }
   let parts = ()
