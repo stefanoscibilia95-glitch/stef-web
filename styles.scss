@@ -415,20 +415,76 @@ main table th {
 
 /* --- CV page ------------------------------------------------------------- */
 
-/* cv.qmd embeds cv.pdf with <object>. Desktop browsers render it inline; phones do
-   not (iOS Safari shows a single unscrollable page, Android Chrome shows nothing),
-   so below the tablet breakpoint the embed is hidden and the download link above it
-   does the job. Height is viewport-based so a whole A4 page is in view. */
-.cv-embed {
-  display: block;
-  width: 100%;
-  height: 85vh;
-  margin-top: 1rem;
-  border: 1px solid var(--bs-border-color);
+/* The "Open PDF version" button under the title of cv.qmd, followed by the "Last
+   updated" line and a rule that marks where the CV itself begins. Colour is the link
+   colour of the current mode, so it is brand red in light and brand yellow in dark. */
+.cv-pdf-button {
+  display: inline-block;
+  margin: 0.25rem 0 0.6rem;
+  padding: 0.4rem 0.9rem;
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  font-family: "Jost", Futura, "Century Gothic", "Avenir Next", Avenir, "URW Gothic", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cv-pdf-button:hover,
+.cv-pdf-button:focus-visible {
+  background: var(--bs-link-color);
+  color: var(--bs-body-bg);
+  text-decoration: none;
+}
+.cv-pdf-button .bi {
+  margin-right: 0.3rem;
 }
 
-@media (max-width: 767.98px) {
-  .cv-embed {
-    display: none;
+.cv-updated {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--bs-secondary-color);
+}
+.cv-updated-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-right: 0.25rem;
+}
+
+/* cv.qmd writes each dated entry as a definition list: the date is the term, the
+   entry the definition. Pandoc emits <dl><dt><dd>; this lays them out as a date
+   column beside hanging text, the same shape as the PDF's 2.7cm column. Nothing
+   else on the site uses a definition list. On phones the date sits above its entry. */
+main dl {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  column-gap: 0.75rem;
+  row-gap: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+main dt {
+  font-weight: 400;
+}
+main dd {
+  margin: 0;
+}
+main dd > p {
+  margin-bottom: 0.3rem;
+}
+main dd > ul {
+  margin-bottom: 0.3rem;
+  padding-left: 1.1rem;
+}
+
+@media (max-width: 575.98px) {
+  main dl {
+    grid-template-columns: 1fr;
+    row-gap: 0.1rem;
+  }
+  main dt {
+    margin-top: 0.6rem;
+    font-weight: 600;
   }
 }

@@ -1,20 +1,178 @@
 ---
-title: "Curriculum vitae"
-toc: false
+title: "Stefano Scibilia — Curriculum&nbsp;vitae"
+# The browser tab: Quarto appends the site name to this, so it reads "Curriculum
+# vitae – Stefano Scibilia" instead of repeating the name from the title above.
+pagetitle: "Curriculum vitae"
+# `date` is the "Last updated" stamp: it prints under the PDF button here, in the PDF
+# footer, and it names the PDF file (yy-mm-dd-scibilia-cv.pdf, see _cv/name-pdf.sh).
+# Change it when you change the CV.
+date: 2026-10-06
+date-format: "MMMM YYYY"
 # Search-engine snippet and social-card text. Kept as raw metadata rather than a
 # `description:` key, because that key ALSO prints on the page as a visible
 # subtitle under the title.
 open-graph:
-  description: "Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a PDF."
+  description: "Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a web page and as a PDF."
 twitter-card:
-  description: "Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a PDF."
-include-in-header:
-  - text: |
-      <meta name="description" content="Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a PDF.">
+  description: "Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a web page and as a PDF."
+# This page renders twice: as the site page, and as cv.pdf through Typst (bundled
+# with Quarto, nothing to install). The PDF layout lives in _cv/typst-template.typ;
+# the header block below comes from the `cv:` keys, so edit them in one place.
+# The HTML head additions sit under `html:` on purpose: at the top level they
+# would also be pasted into the Typst source, where `<meta` breaks the compile.
+format:
+  html:
+    # Quarto would print the date in the title block; the empty partial removes it,
+    # and the body prints it under the button instead.
+    template-partials:
+      - _cv/title-metadata.html
+    include-in-header:
+      - text: |
+          <meta name="description" content="Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a web page and as a PDF.">
+  typst:
+    papersize: a4
+    margin:
+      x: 1.75cm
+      y: 1.9cm
+    mainfont: "Source Serif 4"
+    fontsize: 11pt
+    font-paths: fonts
+    template-partials:
+      - _cv/typst-template.typ
+      - _cv/typst-show.typ
+# Quarto would list the PDF under "Other Formats" in the side column, but that column
+# vanishes on phones. The button in the header block below is there at every width.
+format-links: false
+cv:
+  name: Stefano Scibilia
+  position: PhD Candidate in Political Science, Erasmus University Rotterdam
+  affiliation: Policy, Politics, and Society · Erasmus School of Social and Behavioural Sciences
+  address: Burgemeester Oudlaan 50, 3062 PA Rotterdam, The Netherlands
+  email: scibilia@essb.eur.nl
+  website: stefanoscibilia.com
+  orcid: 0009-0006-4463-6459
+# Dated entries are definition lists: the date is the term, the entry the definition.
+# A second entry in the same year uses `&nbsp;` as its term, so the year prints once.
+# The phone number and the referees are not in this file: they come from the
+# gitignored _quarto-application.yml when the CV is built for applications.
 ---
 
-[Download the CV (PDF)](cv.pdf)
+::: {.content-visible when-format="html"}
+[<i class="bi bi-file-earmark-pdf"></i> Open PDF version](cv.pdf){.cv-pdf-button target="_blank" rel="noopener"}
 
-<object class="cv-embed" data="cv.pdf" type="application/pdf" aria-label="Curriculum vitae of Stefano Scibilia, PDF">
-<p>This browser does not display PDFs inline. <a href="cv.pdf">Open the CV</a>.</p>
-</object>
+::: {.cv-updated}
+[Last updated]{.cv-updated-label} {{< meta date >}}
+:::
+
+---
+
+*{{< meta cv.position >}}*\
+{{< meta cv.affiliation >}}\
+{{< meta cv.address >}}\
+<scibilia@essb.eur.nl> · [stefanoscibilia.com](https://stefanoscibilia.com) · ORCID [0009-0006-4463-6459](https://orcid.org/0009-0006-4463-6459)
+:::
+
+## Research profile
+
+I am a political scientist working on European Union economic governance and the domestic politics of socio-economic reform in EU Member States.
+
+**Research interests:** EU governance, comparative political economy, social policy, case study research
+
+## Academic appointments
+
+2023–present
+:   **PhD Candidate in Political Science**, Policy, Politics, and Society, Erasmus School of Social and Behavioural Sciences, Erasmus University Rotterdam.
+
+    - Doctoral research is focused on understanding how domestic politics within Member States affect the Europeanization of socio-economic policy. Conducted in-depth process tracing analyses of labour market and pension reforms in Italy and Spain, with a particular focus on the "domestic effect" of the European Semester, the Recovery and Resilience Facility, and the Stability and Growth Pact in the 2011–2025 period.
+    - Part of the research project *Towards a resilient European Union? Post-pandemic economic governance amidst politicisation* (PEGAP), funded by the Dutch Research Council (NWO).
+    - Supervisors: prof. dr. Markus Haverland (main supervisor and PEGAP principal investigator), dr. Asya Zhelyazkova, dr. Pieter Tuytens.
+
+## Education
+
+2021–2022
+:   **University of Amsterdam** (NL). MSc in Political Science (Political Economy track).
+
+2018–2020
+:   **Durham University** (UK). MSc in Economics.\
+    Including Erasmus+ research stay for the MSc dissertation at Stockholm University (June–September 2019).
+
+2014–2018
+:   **Università Cattolica del Sacro Cuore** (IT). BSc in Economics, Organizations and Finance (Finance and Global Markets track).
+
+## Publications
+
+### Manuscripts under review
+
+2026
+:   **Scibilia, S.**, and Haverland, M. *From external to internal constraints? Nominal compliance and the Europeanization of socio-economic reforms under the Recovery and Resilience Facility in Spain*. Revise and resubmit, Journal of Common Market Studies.
+
+&nbsp;
+:   **Scibilia, S.**, Haverland, M., Tuytens, P., and Zhelyazkova, A. *Domestic coalitions and (non)compliance in the European Semester: does the Recovery and Resilience Facility make a difference for Italian pension and labour market reforms?* Under review.
+
+### Conference papers
+
+2026
+:   **Scibilia, S.** *From the Recovery and Resilience Plans to the Medium-term Fiscal-structural Plans: the case of pension policy*. 13th Biennial Conference of the ECPR Standing Group on the European Union, Catania, 1–3 July.
+
+&nbsp;
+:   **Scibilia, S.**, and Haverland, M. *From external to internal constraints? Social pacts and socio-economic reforms under the Recovery and Resilience Facility in Spain*. 13th Biennial Conference of the ECPR Standing Group on the European Union, Catania, 1–3 July.
+
+&nbsp;
+:   **Scibilia, S.**, and Haverland, M. *Does RRF-induced centralization lead to structural reforms?* 22nd Netherlands Institute of Governance Annual Work Conference, Ghent, 5–6 February.
+
+&nbsp;
+:   **Scibilia, S.** *Domestic coalitions and (non)compliance in the European Semester: does the Recovery and Resilience Facility make a difference in Italy?* X Convegno Società Italiana di Sociologia Economica (SISEC), Florence, 28–31 January.
+
+2025
+:   **Scibilia, S.**, Haverland, M., Tuytens, P., and Zhelyazkova, A. *Domestic coalitions and compliance in the European Semester: does the Recovery and Resilience Facility make a difference in Italy?* 19th Biennial Conference of the European Union Studies Association, Philadelphia, 8–10 May.
+
+&nbsp;
+:   **Scibilia, S.**, Haverland, M., Tuytens, P., and Zhelyazkova, A. *Does the Recovery and Resilience Facility tilt the balance?* 21st Netherlands Institute of Governance Annual Work Conference, Ghent, 6–7 February.
+
+2024
+:   **Scibilia, S.**, Haverland, M., Tuytens, P., and Zhelyazkova, A. *Tilting the balance: the Recovery and Resilience Facility and labor market reforms inside the Italian political laboratory*. 12th Biennial Conference of the ECPR Standing Group on the European Union, Lisbon, 19–21 June.
+
+2023
+:   **Scibilia, S.** *Continuity and change in EU governance: does the RRF alter the patterns of CSR compliance in the EU South?* 20th Netherlands Institute of Governance Annual Work Conference, Delft, 2–3 November.
+
+## Teaching
+
+2025
+:   **Thesis supervision seminar** *Politics and Policy of the European Union*, BSc Management of International Social Challenges (MISOC), Erasmus University Rotterdam. 8 students; one thesis won the 2025 MISOC Impact Thesis Award.
+
+2024
+:   **Thesis supervision seminar** *European Union Governance in the Age of the Polycrisis*, BSc MISOC, Erasmus University Rotterdam. 8 students.
+
+2023
+:   **Thesis supervision seminar** *Reforming the South of the EU: a Path Hard to Follow*, BSc MISOC, Erasmus University Rotterdam. 5 students.
+
+## Methods training
+
+Jul 2025
+:   **MethodsNET Summer School**, Central European University, Vienna: Comparative Research Designs; Comparative Historical Analysis.
+
+Feb 2025
+:   **ECPR Methods School** (online), KU Leuven: Process Tracing Methods; Interviews as Method of Data Collection in Times of Polarisation.
+
+2023–2025
+:   **Netherlands Institute of Governance** PhD courses: Formulating and Answering Research Questions; Responsibility and Integrity in Research / The Politics of Research; Classic Themes and Contemporary Challenges for Public Governance; Current Themes in EU Governance; Preparing Your Future Academic Career.
+
+## Academic service and societal outreach
+
+Nov 2026
+:   **Co-organiser**, *Lessons from and beyond the Recovery and Resilience Facility (RRF)*, a one-day event for EU and national policymakers on socio-economic reforms in the national recovery and fiscal-structural plans, with the European Social Observatory (OSE).
+
+2025–2026
+:   **Peer reviewer** for *Journal of European Public Policy*, *Journal of Ethnic and Migration Studies*, and *International Environmental Agreements: Politics, Law and Economics*.
+
+&nbsp;
+:   **Member** of the European Consortium for Political Research (ECPR), the Netherlands Institute of Governance (NIG), and the Società Italiana di Sociologia Economica (SISEC).
+
+## Languages
+
+Italian (native) · English (fluent) · Spanish (basic) · French (basic)
+
+## Other professional experience
+
+2020–2021
+:   **Risk Management Intern**, Bosch Rexroth Italia, Cernusco sul Naviglio (Milan), December 2020 – August 2021: business continuity management and export-control compliance.

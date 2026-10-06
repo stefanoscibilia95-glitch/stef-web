@@ -28,3 +28,7 @@ SS_Academic_CV_*.zip
 # The application CV (built under _sources/cv/) carries a phone number and the
 # referees' contact details. It is sent as an attachment, never published.
 /_sources/cv/
+
+# The application CV profile (phone number, referees) and its output folder.
+/_quarto-application.yml
+/_application/

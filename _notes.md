@@ -116,6 +116,58 @@ seminars, or guest lectures get added, use this shape:
 **outreach.qmd** — still entirely placeholder; nothing in the CV fills it. Consider
 hiding it from the navbar until there is real content.
 
+**cv.qmd** — the CV, rendered twice from one file: the site page and `cv.pdf`
+(Typst, bundled with Quarto; nothing to install, CI needs nothing extra). Prose is
+plain markdown, so it is phone-editable like every other page. Conventions:
+
+- Dated entries are **definition lists** (`2023–present` on one line, `:   entry` on
+  the next). Pandoc makes `<dl>` for the page (laid out as a date column by
+  `styles.scss`) and `terms` for Typst (a two-column grid in `_cv/typst-template.typ`).
+  A second entry in the same year uses `&nbsp;` as its term so the year prints once.
+- The page head is: title (name + "Curriculum vitae" in one line), the PDF button, the
+  "Last updated" line, a rule, then the CV. Quarto's own date block under the title is
+  switched off by the empty partial `_cv/title-metadata.html`, so the date can sit
+  under the button instead. `pagetitle:` keeps the browser tab short.
+- `date:` in the YAML is the "Last updated" stamp, on the page and in the PDF footer,
+  **and the PDF's file name**: the post-render script `_cv/name-pdf.sh` copies
+  `_site/cv.pdf` to `_site/yy-mm-dd-scibilia-cv.pdf` and points the button at it, so
+  whoever saves it gets that name. `cv.pdf` stays as a stable alias. The application
+  render is renamed the same way inside `_application/`.
+- The `cv:` keys (name, position, affiliation, address, email, website, orcid) feed
+  the PDF header through `_cv/typst-show.typ`; the page's header block reads the same
+  keys with `{{< meta cv.… >}}`, so there is one place to change them.
+- `include-in-header` sits under `format: html:` on purpose: at the top level Quarto
+  pastes it into the Typst source too, where `<meta` reads as an unclosed label.
+- Quarto shifts heading levels down by one for Typst, so `##` is level 1 and `###`
+  level 2 in the template's show rules.
+- Quarto's `definitions.typ` styles `terms.item`; only a later rule on the **same**
+  element overrides it (a rule on the parent `terms` never fires). Verified.
+- Fonts for the PDF are the TTF twins of the site's woff2 in `fonts/` (converted with
+  fontTools; XeTeX and Typst cannot read woff2). `font-paths: fonts` in the YAML.
+- The "Open PDF version" button is a plain link in the HTML-only header block, not
+  Quarto's `format-links`: those live in the side column, which phones do not show.
+
+**The application CV** (phone number + referees) comes from the gitignored profile
+`_quarto-application.yml`:
+
+    quarto render cv.qmd --profile application --to typst
+
+writes `_application/Scibilia_CV.pdf` (folder gitignored; Quarto also drops a few
+site stubs in there, harmless). The site render never sees the profile, so `cv.pdf`
+and `cv.html` carry neither. The old LaTeX version is archived in `_sources/cv/`.
+
+**teaching.qmd** — the CV records only thesis supervision. If courses, tutorials,
+seminars, or guest lectures get added, use this shape:
+
+    ## Courses
+
+    ### [Course title]
+    **[Course code]** · [Level] · Erasmus University Rotterdam · [Terms taught]
+    [Two sentences on what the course covers and who it is for.]
+
+**outreach.qmd** — still entirely placeholder; nothing in the CV fills it. Consider
+hiding it from the navbar until there is real content.
+
 **cv.qmd** — **hidden from the site since 6 October 2026** while Stefano updates the CV:
 `_quarto.yml` excludes it from `render:` and has the resource line and the navbar entry
 commented out; the files stay in the repo. Re-enabling is those three lines.
@@ -129,34 +181,12 @@ run `build.sh`, commit and push `cv.pdf`.
 
 ---
 
-## The application CV (`_sources/cv/`, gitignored)
+## The LaTeX CV (`_sources/cv/`, gitignored) — archived
 
-Built 6 October 2026 from the website, the September 2025 CV archive and a LinkedIn
-export. LaTeX (`cv.tex`), compiled with XeLaTeX — locally through tectonic
-(`./build.sh`), or on Overleaf. European academic-CV practice with US practice as the
-tiebreaker: A4, languages, referees with contacts, no photo, no date of birth, and no
-nationality line (Stefano's call). `build.sh` makes two PDFs from the one source:
-`Scibilia_CV.pdf` for applications and `../../cv.pdf` for the website, the latter via
-`cv-web.tex`, which sets `\webversion` so the phone number and the References section
-drop out. `README.md` in the folder has the Overleaf steps and the house rules.
-A copy of the source for Overleaf was zipped to `~/Desktop/Scibilia_CV_latex.zip`.
-
-- **Fonts** are the website's: `fonts/*.woff2` converted to TTF with fontTools
-  (`TTFont(...).flavor = None`). If the site fonts ever change, reconvert; XeTeX cannot
-  read woff2.
-- **Facts verified on 6 Oct 2026:** PhD start 15 January 2023 (Stefano; the 2025 CV
-  said February); referees' titles and emails from their EUR profile pages
-  (Haverland full professor, Zhelyazkova associate professor). Memberships ECPR, NIG,
-  SISEC (Stefano). No awards; grades deliberately left out (Stefano).
-- **Phone** is the EUR office line from the 2025 CV, not a mobile.
-- **Internship** (Bosch Rexroth, 2020–2021) is included because it fills the gap
-  between the Durham and Amsterdam degrees; it is the first thing to cut if space is
-  ever short again.
-- Three pages, by Stefano's decision (a two-page cut was built first and rejected).
-- Structure, by Stefano's decision: *Academic appointments* before *Education*, with
-  the PhD only under appointments (an employed position, with completion date,
-  project and supervisors as sub-points) and not repeated under education.
-  "Academic service and societal outreach" is his wording for the service section.
-- The team is written **Policy, Politics, and Society** everywhere (EUR's order; he
-  typed it the other way round once). It sits in the header, the PhD entry and both
-  referees' affiliations: it is the de-facto department within ESSB.
+The first version of the CV (6 October 2026) was LaTeX, compiled with tectonic, with the
+same design. It was superseded the same day by `cv.qmd` (see above) so that the CV is
+edited like any other page and the PDF rebuilds on every render. The folder stays as a
+reference; `build.sh` still compiles it. Facts verified then and carried over: PhD
+start 15 January 2023; referees' titles and emails from their EUR profile pages;
+memberships ECPR, NIG, SISEC; no awards; grades deliberately left out; phone is the EUR
+office line; "Policy, Politics, and Society" is EUR's order for the team name.
