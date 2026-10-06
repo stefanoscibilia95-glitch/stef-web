@@ -12,6 +12,9 @@ project:
     # redistributed, and serving the .woff2 publicly counts as redistribution.
     - fonts/OFL-Jost.txt
     - fonts/OFL-SourceSerif4.txt
+    # The website copy of the CV, built by _sources/cv/build.sh. It is the stripped
+    # render (no phone number, no referees) — never the application CV.
+    - cv.pdf
 
 website:
   title: "Stefano Scibilia"
@@ -44,6 +47,8 @@ website:
         text: Teaching
       - href: outreach.qmd
         text: Outreach
+      - href: cv.qmd
+        text: Curriculum vitae
       - href: contacts.qmd
         text: Contacts
 

@@ -1,13 +1,11 @@
 ---
 title: "Stefano Scibilia"
-subtitle: "PhD Candidate<br>Policy, Politics, and Society (ESSB)<br>Erasmus University Rotterdam"
-# Social-card text only. A plain `description:` would ALSO print on the page, under the affiliation, duplicating the Profile paragraph. Setting it here keeps it in the metadata. Needed because Quarto otherwise derives the card text from the subtitle, stripping the <br> tags without inserting spaces and producing "PhD CandidatePolicy, Politics, and SocietyDept. of...".
+subtitle: "PhD Candidate<br>Policy, Politics, and Society (ESSB)<br>Erasmus University Rotterdam<br>The Netherlands"
 open-graph:
   description: "PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States."
 twitter-card:
   description: "PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States."
 toc: true
-# Structured data: tells Google this site is about a specific person, and ties it to your ORCID and profiles so they are treated as the same entity rather than five unrelated pages. Invisible on the page.
 include-in-header:
   - text: |
       <meta name="description" content="PhD candidate in political science at Erasmus University Rotterdam, working on European Union governance and socio-economic reform in EU Member States.">

@@ -153,6 +153,7 @@ subtitle under the title, which is why it was removed in the first place.
 |---|---|
 | `index.qmd` | Landing page (Quarto `about: trestles`) |
 | `research.qmd` `teaching.qmd` `outreach.qmd` `contacts.qmd` | Content pages |
+| `cv.qmd` + `cv.pdf` | CV page: embeds the PDF, link only on phones. **`cv.pdf` is the stripped website copy** from `_sources/cv/build.sh` (no phone, no referees), never the application CV |
 | `404.qmd` | Not-found page; **links must stay absolute** (`/research.html`) because it is served from any depth |
 | `styles.scss` | All custom CSS (theme layer, both light and dark) |
 | `dark.scss` | Dark-mode SCSS variables only |
@@ -160,6 +161,7 @@ subtitle under the title, which is why it was removed in the first place.
 | `_quarto.yml` | Site config, navbar, theme, Open Graph |
 | `_notes.md` | Maintenance notes — **read this before non-trivial changes** |
 | `_sources/` | Zotero `.bib`, CV LaTeX archive, full-resolution photo. Underscore prefix ⇒ Quarto never publishes it |
+| `_sources/cv/` | The CV source: `cv.tex` + the website fonts as TTF + `build.sh` → `Scibilia_CV.pdf` (applications) and `/cv.pdf` (website copy). **Gitignored** — phone number and referees' emails. Details in `_notes.md` |
 | `fonts/` | Self-hosted Jost + its OFL licence |
 | `.claude/` | `serve.py` static preview server, `launch.json`, and `guard-renderer.sh` + `settings.json` (the one-renderer hook) |
 | `images/` | `profile.jpg` (800×800, web-sized), `favicon.png` |
@@ -294,4 +296,11 @@ them from `_sources/stef-biblatex.bib`.
 - **Never put the phone number on the site.** It is in the CV archive under
   `_sources/`, which is gitignored — the GitHub repo is public.
 - Education history is deliberately not on the site.
+- **Never commit a LinkedIn export** or any other profile download. One was pushed in
+  October 2026 (home address, personal email) and removed from the tip in `305961d`;
+  it remains in the history. `*linkedin*` is gitignored so it cannot recur by accident.
+- The application CV under `_sources/cv/` is gitignored for the same reason: phone
+  number and referees' contact details. It is sent as an attachment, never published.
+  The site's `cv.pdf` is a separate render of the same source with those two things
+  removed; `build.sh` produces both at once, so they cannot drift apart.
 - The photo is by **M. Muus** (2023); credit if EUR's terms require it.

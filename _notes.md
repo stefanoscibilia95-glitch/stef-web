@@ -116,5 +116,44 @@ seminars, or guest lectures get added, use this shape:
 **outreach.qmd** — still entirely placeholder; nothing in the CV fills it. Consider
 hiding it from the navbar until there is real content.
 
-**CV link** — once a `cv.pdf` is in the project root, uncomment the CV entry in the
-navbar in `_quarto.yml` and add a link to it on `contacts.qmd`.
+**cv.qmd** — embeds `cv.pdf` (project root, listed under `project: resources:`) with
+`<object>` and offers a download link above it. `styles.scss` hides the embed below
+768px because phones do not render inline PDFs (iOS Safari shows one unscrollable page,
+Android Chrome nothing), so there the link is the whole page. `cv.pdf` is the *website
+copy* that `_sources/cv/build.sh` builds from `cv-web.tex`: no phone number, no
+referees. Never copy `Scibilia_CV.pdf` there. To update the site's CV: edit `cv.tex`,
+run `build.sh`, commit and push `cv.pdf`.
+
+---
+
+## The application CV (`_sources/cv/`, gitignored)
+
+Built 6 October 2026 from the website, the September 2025 CV archive and a LinkedIn
+export. LaTeX (`cv.tex`), compiled with XeLaTeX — locally through tectonic
+(`./build.sh`), or on Overleaf. European academic-CV practice with US practice as the
+tiebreaker: A4, languages, referees with contacts, no photo, no date of birth, and no
+nationality line (Stefano's call). `build.sh` makes two PDFs from the one source:
+`Scibilia_CV.pdf` for applications and `../../cv.pdf` for the website, the latter via
+`cv-web.tex`, which sets `\webversion` so the phone number and the References section
+drop out. `README.md` in the folder has the Overleaf steps and the house rules.
+A copy of the source for Overleaf was zipped to `~/Desktop/Scibilia_CV_latex.zip`.
+
+- **Fonts** are the website's: `fonts/*.woff2` converted to TTF with fontTools
+  (`TTFont(...).flavor = None`). If the site fonts ever change, reconvert; XeTeX cannot
+  read woff2.
+- **Facts verified on 6 Oct 2026:** PhD start 15 January 2023 (Stefano; the 2025 CV
+  said February); referees' titles and emails from their EUR profile pages
+  (Haverland full professor, Zhelyazkova associate professor). Memberships ECPR, NIG,
+  SISEC (Stefano). No awards; grades deliberately left out (Stefano).
+- **Phone** is the EUR office line from the 2025 CV, not a mobile.
+- **Internship** (Bosch Rexroth, 2020–2021) is included because it fills the gap
+  between the Durham and Amsterdam degrees; it is the first thing to cut if space is
+  ever short again.
+- Three pages, by Stefano's decision (a two-page cut was built first and rejected).
+- Structure, by Stefano's decision: *Academic appointments* before *Education*, with
+  the PhD only under appointments (an employed position, with completion date,
+  project and supervisors as sub-points) and not repeated under education.
+  "Academic service and societal outreach" is his wording for the service section.
+- The team is written **Policy, Politics, and Society** everywhere (EUR's order; he
+  typed it the other way round once). It sits in the header, the PhD entry and both
+  referees' affiliations: it is the de-facto department within ESSB.

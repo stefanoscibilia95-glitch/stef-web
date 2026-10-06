@@ -1,0 +1,20 @@
+---
+title: "Curriculum vitae"
+toc: false
+# Search-engine snippet and social-card text. Kept as raw metadata rather than a
+# `description:` key, because that key ALSO prints on the page as a visible
+# subtitle under the title.
+open-graph:
+  description: "Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a PDF."
+twitter-card:
+  description: "Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a PDF."
+include-in-header:
+  - text: |
+      <meta name="description" content="Curriculum vitae of Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam, as a PDF.">
+---
+
+[Download the CV (PDF)](cv.pdf)
+
+<object class="cv-embed" data="cv.pdf" type="application/pdf" aria-label="Curriculum vitae of Stefano Scibilia, PDF">
+<p>This browser does not display PDFs inline. <a href="cv.pdf">Open the CV</a>.</p>
+</object>
