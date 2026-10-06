@@ -13,8 +13,8 @@ project:
     - CNAME
     # SIL OFL 1.1 requires the licence to travel with the font wherever it is
     # redistributed, and serving the .woff2 publicly counts as redistribution.
-    - fonts/OFL-Jost.txt
-    - fonts/OFL-SourceSerif4.txt
+    - fonts/OFL-ApfelGrotezk.txt
+    - fonts/OFL-Ronzino.txt
 
 website:
   title: "Stefano Scibilia"

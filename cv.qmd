@@ -34,7 +34,7 @@ format:
     margin:
       x: 1.75cm
       y: 1.9cm
-    mainfont: "Source Serif 4"
+    mainfont: "Ronzino"
     fontsize: 11pt
     font-paths: fonts
     template-partials:

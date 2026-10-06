@@ -163,7 +163,7 @@ subtitle under the title, which is why it was removed in the first place.
 | `_notes.md` | Maintenance notes — **read this before non-trivial changes** |
 | `_sources/` | Zotero `.bib`, CV LaTeX archive, full-resolution photo. Underscore prefix ⇒ Quarto never publishes it |
 | `_sources/cv/` | **Archived** LaTeX version of the CV (superseded by `cv.qmd`). Gitignored |
-| `fonts/` | Self-hosted Jost and Source Serif 4: `.woff2` for the site, `.ttf` twins for the PDF (`font-paths` in `cv.qmd`), plus both OFL licences |
+| `fonts/` | Self-hosted Apfel Grotezk (Mittel, Fett) and Ronzino (Regular, Oblique, Bold, Bold Oblique): `.woff2` latin subsets for the site, `.otf` twins for the PDF (`font-paths` in `cv.qmd`), plus both OFL licences |
 | `.claude/` | `serve.py` static preview server, `launch.json`, and `guard-renderer.sh` + `settings.json` (the one-renderer hook) |
 | `images/` | `profile.jpg` (800×800, web-sized), `favicon.png` |
 
@@ -220,8 +220,9 @@ them from `_sources/stef-biblatex.bib`.
   `#F2EEE4` gives 13.7:1, still well past AAA, visibly softer, and warm enough to
   echo the sepia of light mode instead of adding a colour. It clears the red
   navbar at 5.08:1.
-- **Name on the landing page**: Jost Bold, all caps, self-hosted (SIL OFL). Sized
-  1.8rem so it fits the column on one line with headroom.
+- **Name on the landing page**: Apfel Grotezk Fett (700), mixed case, one line,
+  self-hosted (SIL OFL). Mixed case is Stefano's choice (October 2026, when the
+  display face changed), and it is what lets the name be large.
 - **Light mode is warm, not white.** cosmo ships `#FFFFFF` under a `#F8F9FA`
   navbar, which glares. `light.scss` sets the page to a `#FDF6E3` sepia and
   darkens the ink to `#34302A`. A warm ground carries darker text without
@@ -235,13 +236,14 @@ them from `_sources/stef-biblatex.bib`.
   transparent border of the same width so nothing shifts. Note Bootstrap derives
   its own active tint from `$link-color` (it produced `#8B0000` here), so both
   mode files pin the active text back explicitly.
-- **The navbar is 600, not the body weight**, which read thin beside Jost
-  headings and the heavier band. That face is already self-hosted, so it is free.
-- **Which face goes where: Jost for wayfinding, Source Serif for reading.** The
-  name, the navbar and every heading are Jost; body text, citations and the TOC
-  are the serif. The test is whether you *scan* it or *read* it. This is also why
-  the navbar is not the body face — a nav row set in the reading serif reads as a
-  sentence rather than a set of destinations.
+- **The navbar is set in Apfel Grotezk Mittel (500), like the headings.** Only
+  Mittel (500) and Fett (700) are shipped; any other weight is browser-faked, so
+  do not ask for one.
+- **Which face goes where: Apfel Grotezk for wayfinding, Ronzino for reading.** The
+  name (Fett), the navbar and every heading (Mittel) are Apfel Grotezk; body text,
+  citations and the TOC are Ronzino. The test is whether you *scan* it or *read*
+  it. This is also why the navbar is not the body face — a nav row set in the
+  reading face reads as a sentence rather than a set of destinations.
 - **Three accepted contrast shortfalls, all deliberate.** Both navbar hovers
   (brand red on green, 4.14; brand yellow on red, 4.20) and the footer's "Quarto"
   link (4.14) sit under the 4.5 floor. Each was a choice between the exact brand
@@ -250,44 +252,47 @@ them from `_sources/stef-biblatex.bib`.
   transient or incidental: hovers sit over resting colours of 9.21 and 5.08, and
   the footer is one 12px courtesy link. The dark hover also *improves* on
   darkly's default, which measured 4.00. **Never reuse these ratios for content.**
-- **Two typefaces, both self-hosted, and no others.** Jost for headings and the
-  name, Source Serif 4 for everything else. `bootstrap-icons` and `anchorjs-icons`
+- **Two typefaces, both self-hosted, and no others.** Apfel Grotezk for the name,
+  the headings and the navbar, Ronzino for everything else; both by Collletttivo,
+  SIL OFL. They replaced Jost and Source Serif 4 in October 2026 (Mattone was tried
+  for an afternoon in between). `bootstrap-icons` and `anchorjs-icons`
   are also loaded, but they are symbol sets for the search, theme toggle, contact
   buttons and heading anchors — not typography.
-- **Body is self-hosted Source Serif 4, headings are Jost.** Four faces (400,
-  400i, 600, 600i), latin subset only, ~83 KB total. Geometric sans display
-  against a rational screen serif gives real hierarchy; a serif also carries the
-  dense citation lists better than cosmo's sans did. Both SIL OFL licences are
-  listed under `project: resources:` — serving the `.woff2` counts as
-  redistribution.
+- **Body is self-hosted Ronzino, headings are Apfel Grotezk.** Ronzino is
+  Collletttivo's take on Arial, shipped as four latin-subset faces (400, 400
+  oblique, 700, 700 oblique); Arial is its fallback, so a cold load barely reflows,
+  and `<strong>` maps to the real 700. Both SIL OFL licences are listed under
+  `project: resources:` — serving the `.woff2` counts as redistribution.
 - **One font stack in both modes.** cosmo asks for Source Sans Pro and darkly for
   Lato, and neither ships with the theme, so each mode fell back independently —
   measured on the author's Mac, light rendered Source Sans Pro and dark fell
   through to San Francisco, ~8% wider for the same string. `$font-family-sans-serif`
   is pinned in `styles.scss`, which is in both theme lists.
-- **Favicon**: white Jost Bold `S` on a `#CC0000` rounded square, 256×256 with
-  transparent corners. Chosen on 16px legibility, which is the only size that
-  matters in a tab: a solid red block reads on both light and dark tab bars. The
-  alternatives failed there — a black letter with no background is invisible on a
-  dark tab, and white-background variants dissolve into a light one. The previous
-  yellow-on-black went muddy as the strokes thinned.
+- **Favicon**: a bare `S` in Apfel Grotezk Satt, brand red `#CC0000`, on a
+  transparent 256×256 canvas — Stefano's choice in October 2026, replacing the
+  white Jost `S` on a red square. Satt is the heaviest weight, which is what keeps
+  the letter readable at 16px; brand red reads on both light and dark tab bars,
+  where a black or white letter alone would vanish on one of them. Regenerate it
+  from the Satt OTF with Pillow if the brand red ever changes.
 - **Affiliation order** is narrow → broad, with the Oxford comma, and it is three
   lines: PhD Candidate / Policy, Politics, and Society (ESSB) / Erasmus University
   Rotterdam. The CV's "Politics, Policy, and Society" is wrong. The Dept. of Public
   Administration and Sociology used to sit under the group and was removed in
   September 2026 — the department is no longer used, so do not put it back.
 - **The landing column is one measure: photo and name are both ~95% of it.**
-  `image-width: 95%` in `index.qmd` and `font-size: 1.92rem` on the name give
-  331.9px and 329.5px in the 349.5px desktop column — equal to within 3px, which is
-  what stops the column looking like three unrelated objects. Both are percentages
-  or rem, so they track the column instead of being pinned to it.
-- **The name has two sizes because the column has two widths.** 349.5px on desktop,
-  but only 322px on a 390px phone. 1.8rem is the phone value, 1.92rem the desktop
-  one; each leaves ~5%. **Do not raise the desktop value past 1.92rem.** Jost would
-  still fit, but the name renders in a fallback for the first ~100ms of a cold load
-  and Futura — first in the stack, on every Mac — is 6% wider: at 1.94rem it is
-  350.3px against a 349.5px column and wraps, so the name visibly reflows as the
-  webfont swaps in.
+  `image-width: 95%` in `index.qmd` and the name's `clamp()` size in `styles.scss`
+  both give 95% of the column at every viewport, which is what stops the column
+  looking like three unrelated objects.
+- **The name's size is fluid above 992px because the column is.** Measured in the
+  browser (October 2026): the trestles column is 253px wide at a 992px viewport,
+  347px from 1199px up, and grows linearly in between; below 992px the columns
+  stack and a 390px phone gives 322px. So the name is 2.45rem on phones (91%) and
+  `clamp(2.01rem, 6.179vw − 27.19px, 2.76rem)` on desktop, derived
+  from the photo's width at 992 and 1199 so the two stay equal. Do not replace the
+  clamp with one fixed size: at 992px the 1199px size wraps the name onto two
+  lines. Helvetica Bold and Arial Bold, the fallbacks, are within a few percent of
+  Apfel Grotezk Fett's width, so the ~100ms a cold load spends in a fallback cannot
+  push a 95%-wide name past the column.
 - **The School is abbreviated to "(ESSB)" on purpose — do not spell it out.**
   Written in full, "Erasmus School of Social and Behavioural Sciences" is 390px
   against a 349.5px column: it cannot hold one line at any readable size, so it

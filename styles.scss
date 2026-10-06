@@ -18,29 +18,30 @@ $navbar-padding-y: 0.5rem;
 //
 // Second, consistency between visitors: both faces below are self-hosted from
 // fonts/, so nobody depends on having something installed. Same reasoning that
-// put Jost on the landing page instead of Futura.
+// put a self-hosted face on the landing page instead of Futura.
 //
-// Body is Source Serif 4 — Adobe's screen-first text serif, low stroke contrast
-// and open apertures, which holds up in the dense citation lists on Research.
-// Headings are Jost, the geometric sans already used for the name: a Bauhaus
-// display face against a rational serif text face, so hierarchy comes from the
-// pairing rather than from size alone.
+// Body is Ronzino — Collletttivo's take on Arial, so a neutral grotesque that
+// reads as a text face and falls back to Arial itself with almost no reflow.
+// Headings and the navbar are Apfel Grotezk Mittel (500), the name is Apfel
+// Grotezk Fett (700): one grotesque family for wayfinding, a second for reading,
+// so hierarchy comes from weight and size rather than from a serif/sans contrast.
+// Both families are Collletttivo, SIL OFL. They replaced Jost and Source Serif 4
+// in October 2026 (Stefano's choice; Mattone was tried in between and dropped).
 // Both Bootswatch themes @import their own font from Google — cosmo pulls Source
 // Sans Pro, darkly pulls Lato. Neither is used once the stacks below are pinned,
 // but the import still fires on every page load: two render-blocking requests
 // for fonts nobody sees, and every visitor's IP handed to Google. That is the
-// same GDPR problem that made Jost self-hosted in the first place. Bootswatch
+// same GDPR problem that made the fonts self-hosted in the first place. Bootswatch
 // gates the import on this variable, so setting it false removes it.
 $web-font-path: false;
 
-$font-family-sans-serif: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
-$headings-font-family: "Jost", Futura, "Century Gothic", "Avenir Next", Avenir, "URW Gothic", sans-serif;
+$font-family-sans-serif: "Ronzino", Arial, Helvetica, sans-serif;
+$headings-font-family: "Apfel Grotezk", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-// Only the 600 weight is shipped, not 700. A semibold is the right "bold" for a
-// text serif — 700 turns muddy at body sizes — and pointing Bootstrap at 600
-// means <strong> hits a real face instead of a browser-synthesised fake.
-$font-weight-bold: 600;
-$headings-font-weight: 700;   // Jost is shipped at 700 only
+// Ronzino ships a real Bold (700) and Bold Oblique, so <strong> hits a real face
+// instead of a browser-synthesised fake.
+$font-weight-bold: 700;
+$headings-font-weight: 500;   // Apfel Grotezk Mittel. Fett (700) is reserved for the name.
 
 /*-- scss:rules --*/
 
@@ -70,8 +71,10 @@ body.quarto-about-solana main {
 }
 
 h1, h2, h3, h4 {
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  // Apfel Grotezk Mittel. Only Mittel (500) and Fett (700) are shipped; any other
+  // value here would be browser-faked.
+  font-weight: 500;
+  letter-spacing: 0;
 }
 
 h2 {
@@ -118,13 +121,16 @@ h3 {
 }
 
 
-/* Jost, self-hosted. SIL Open Font License 1.1 — full text in fonts/OFL.txt,
-   which must stay alongside the font file to satisfy the licence.
+/* Apfel Grotezk, self-hosted: Mittel (500) for headings and the navbar, Fett
+   (700) for the name. SIL Open Font License 1.1 — full text in
+   fonts/OFL-ApfelGrotezk.txt, which must stay alongside the font files to satisfy
+   the licence (it is listed under project: resources: in _quarto.yml).
 
-   Only the Bold Latin subset is bundled (10 KB) because the face is used for a
-   single heading. Self-hosted rather than loaded from Google Fonts: that keeps
-   the site free of third-party requests, which also avoids the GDPR problem
-   German courts have found with embedding Google Fonts on EU sites.
+   Latin subsets only, made with pyftsubset from the OTFs in the Collletttivo
+   package; the full-glyph OTFs in fonts/ are for the CV PDF, which Typst builds.
+   Self-hosted rather than loaded from a CDN: that keeps the site free of
+   third-party requests, which also avoids the GDPR problem German courts have
+   found with embedding Google Fonts on EU sites.
 
    The path is project-relative, not relative to the compiled stylesheet.
    Quarto treats url() in SCSS as a build dependency: it resolves the path from
@@ -132,82 +138,89 @@ h3 {
    site_libs/bootstrap/, and the URL then resolves correctly at runtime.
    ("../../fonts/..." fails the build — Quarto resolves it to /Users/fonts/.) */
 @font-face {
-  font-family: "Jost";
+  font-family: "Apfel Grotezk";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/apfel-grotezk-500-latin.woff2") format("woff2");
+}
+/* The 700 face is used only by the name, which is sized to 95% of its column.
+   Arial Bold and Helvetica Bold — the fallbacks — are 8% wider than Apfel Grotezk
+   Fett, so a swap-in from a fallback would wrap the name for the first ~100ms of a
+   cold load. `block` holds the text invisible until the 15 KB file arrives (or 3s,
+   after which the fallback shows), so the name only ever appears in Apfel. */
+@font-face {
+  font-family: "Apfel Grotezk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("fonts/apfel-grotezk-700-latin.woff2") format("woff2");
+}
+
+/* Ronzino, latin subset, four faces: Regular, Oblique, Bold, Bold Oblique. The
+   Research page and the CV lean on italics for titles, so the obliques are real
+   faces, not browser slants. SIL OFL 1.1, full text in fonts/OFL-Ronzino.txt. */
+@font-face {
+  font-family: "Ronzino";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/ronzino-400-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Ronzino";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/ronzino-400i-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Ronzino";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("fonts/jost-700-latin.woff2") format("woff2");
-}
-
-/* Source Serif 4, latin subset, four faces (~81 KB total). Regular and semibold
-   in both upright and italic — the Research page leans on italics for titles and
-   on bold for the author name, so all four earn their place. */
-@font-face {
-  font-family: "Source Serif 4";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("fonts/source-serif-400-latin.woff2") format("woff2");
+  src: url("fonts/ronzino-700-latin.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Source Serif 4";
+  font-family: "Ronzino";
   font-style: italic;
-  font-weight: 400;
+  font-weight: 700;
   font-display: swap;
-  src: url("fonts/source-serif-400i-latin.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Source Serif 4";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("fonts/source-serif-600-latin.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Source Serif 4";
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url("fonts/source-serif-600i-latin.woff2") format("woff2");
+  src: url("fonts/ronzino-700i-latin.woff2") format("woff2");
 }
 
-/* Your name on the landing page: Jost, bold, all caps.
-
-   Jost is a geometric sans in the Futura tradition, so every visitor gets the
-   same look regardless of platform. Futura and the other geometric faces stay
-   behind it purely as a safety net if the woff2 ever fails to load.
+/* Your name on the landing page: Apfel Grotezk Fett, mixed case, one line.
 
    Scoped to .quarto-about-trestles, which is the landing page only — the titles
    on Research, Teaching, Outreach and Contacts are untouched.
 
-   Caps need more tracking than lowercase to avoid looking cramped, hence
-   0.06em — this also cancels the negative letter-spacing set on headings. */
+   Mixed case, not caps: Stefano's choice when the display face changed (October
+   2026). A touch of tracking (0.01em) keeps the bold shapes from touching. */
 .quarto-about-trestles #title-block-header .title {
-  font-family: "Jost", Futura, "Century Gothic", "Avenir Next", Avenir,
-               "URW Gothic", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-family: $headings-font-family;
+  text-transform: none;
+  letter-spacing: 0.01em;
   font-weight: 700;
-  /* Sized to leave ~5% headroom in the column, which means two sizes: the
-     trestles column is 349.5px on desktop but only 322px on a 390px phone, and a
-     single size cannot leave 5% in both. 1.8rem is the phone value (308.9px in
-     322px = 96%); the desktop value is set in the media query below.
-
-     Do not raise this past 1.92rem. Jost would still fit, but the name renders in
-     a fallback for the first ~100ms of a cold load, and Futura — the first
-     fallback, present on every Mac — is 6% wider than Jost: at 1.94rem it measures
-     350.3px against a 349.5px column and wraps, so the name visibly reflows as the
-     webfont swaps in. 1.92rem keeps Futura at 346.7px, under the column, so no
-     size in the stack ever wraps. Measured, not estimated. */
-  font-size: 1.8rem;
+  /* Below 992px the columns stack and the name has the page width: 322px on a
+     390px phone, where 2.45rem gives 293px (91%, measured) — a little under the
+     desktop's 95% so that even the Arial Bold fallback, 8% wider, stays on one
+     line. Above 992px the trestles column is FLUID, not fixed — 253px wide at a
+     992px viewport, 347px from 1199px up, linear in between — so the desktop
+     size in the media query below tracks the viewport instead of picking one
+     number. */
+  font-size: 2.45rem;
 }
 
 @media (min-width: 992px) {
   .quarto-about-trestles #title-block-header .title {
-    /* 329.5px in the 349.5px desktop column — 94.3%. Paired with
-       `image-width: 95%` in index.qmd, so the photo and the name are the same
-       width to within 3px and the column reads as one measure. */
-    font-size: 1.92rem;
+    /* "Stefano Scibilia" in Apfel Grotezk Fett at 0.01em tracking is 7.04× the
+       font size wide (fontTools; the browser agreed to 0.1px for the previous
+       faces). The photo is 95% of the column: 240px at a 992px viewport, 330px
+       from 1199px up, linear in between. Sizing the name to the same two points
+       gives the calc below; the clamp pins the ends so nothing drifts outside the
+       measured range. Name and photo then stay the same width at every viewport,
+       which is what makes the column read as one measure. */
+    font-size: clamp(2.01rem, calc(6.179vw - 27.19px), 2.76rem);
   }
 }
 
@@ -309,16 +322,14 @@ div.quarto-about-trestles .about-entity .about-link:hover {
 
 /* --- Navigation ---------------------------------------------------------- */
 
-/* The navbar sat at the body weight, which read thin beside Jost headings and
-   the heavier band. 600 is the semibold face already self-hosted, so this costs
-   no extra download. */
+/* The navbar is set in the heading face, Apfel Grotezk Mittel. */
 .navbar .navbar-nav .nav-link {
-  // Jost, like the headings and the name — not the body serif. The rule the site
-  // follows is: Jost for anything you navigate or scan by, Source Serif for
-  // anything you read. Navigation is wayfinding, so it belongs to the first
-  // group. It also stops the navbar reading as a run of body text.
+  // Apfel Grotezk, like the headings and the name — not the body face. The rule
+  // the site follows is: Apfel Grotezk for anything you navigate or scan by,
+  // Ronzino for anything you read. Navigation is wayfinding, so it belongs to the
+  // first group. It also stops the navbar reading as a run of body text.
   font-family: $headings-font-family;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.01em;
   border-bottom: 3px solid transparent;
   padding-bottom: 0.15rem;
@@ -424,8 +435,8 @@ main table th {
   padding: 0.4rem 0.9rem;
   border: 1.5px solid currentColor;
   border-radius: 6px;
-  font-family: "Jost", Futura, "Century Gothic", "Avenir Next", Avenir, "URW Gothic", sans-serif;
-  font-weight: 600;
+  font-family: $headings-font-family;
+  font-weight: 500;
   font-size: 0.95rem;
   line-height: 1.2;
   text-decoration: none;

@@ -1,6 +1,6 @@
-// CV layout for the Typst (PDF) output of cv.qmd. It mirrors the design of the
-// LaTeX CV that preceded it: Jost Bold caps for the name and the section titles,
-// Source Serif 4 for the text, a 2.7cm date column, ragged right.
+// CV layout for the Typst (PDF) output of cv.qmd. Same faces as the site: Apfel
+// Grotezk Fett for the name (mixed case) and Mittel for the section titles (caps,
+// letterspaced), Ronzino for the text; a 2.7cm date column, ragged right.
 //
 // typst-show.typ calls `cv` with the document metadata; `doc` is everything that
 // follows the YAML in cv.qmd. Page size and margins come from Quarto's own page.typ,
@@ -17,7 +17,7 @@
   phone: none,      // only present when built with the application profile
   referees: none,   // idem
   updated: none,
-  font: ("Source Serif 4",),
+  font: ("Ronzino",),
   fontsize: 11pt,
   doc,
 ) = {
@@ -35,7 +35,9 @@
   show heading.where(level: 1): it => {
     v(13pt, weak: true)
     block(breakable: false, below: 7pt, stack(dir: ttb, spacing: 3pt,
-      text(font: "Jost", weight: 700, size: 9.5pt, tracking: 0.06em, upper(it.body)),
+      // Typst registers the Mittel OTF as its own family, "Apfel Grotezk Mittel"
+      // (quarto typst fonts --font-path fonts), while Fett sits under "Apfel Grotezk".
+      text(font: "Apfel Grotezk Mittel", weight: 500, size: 9.5pt, tracking: 0.06em, upper(it.body)),
       line(length: 100%, stroke: 0.5pt)))
   }
   // Sub-headings (### in cv.qmd): bold, never separated from what follows.
@@ -65,7 +67,7 @@
   ])
 
   // ---- Header
-  text(font: "Jost", weight: 700, size: 24pt, tracking: 0.06em, upper(name))
+  text(font: "Apfel Grotezk", weight: 700, size: 24pt, tracking: 0.01em, name)
   v(5pt)
   if position != none { text(size: 12pt, style: "italic", position); v(7pt) }
   if affiliation != none { affiliation; linebreak() }
