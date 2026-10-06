@@ -8,7 +8,7 @@ about:
       text: ORCID
       href: https://orcid.org/0009-0006-4463-6459
     - icon: mortarboard-fill
-      text: Erasmus University page
+      text: EUR Faculty
       href: https://www.eur.nl/en/people/stefano-scibilia
     - icon: linkedin
       text: LinkedIn
