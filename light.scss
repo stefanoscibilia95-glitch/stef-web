@@ -3,39 +3,48 @@
 // Light-mode palette, layered on top of the `cosmo` Bootswatch theme.
 // The mirror of dark.scss — dark mode is untouched by this file.
 //
-// The whole site runs on three brand colours and two warm neutrals. Nothing else
-// should be introduced here without a reason written down:
+// Every neutral is a step of one scale, Radix Gold (MIT), and the two mode files
+// use the same step numbers, so light and dark are exact mirrors. The accent is a
+// brand colour: red here, yellow in dark.scss. Nothing else should be introduced
+// without a reason written down:
 //
-//   brand red    #CC0000
-//   brand yellow #FFD700   (dark mode only)
-//   brand green  #D3DCBF   (the light-mode band)
-//   page         #FDF6E3   warm neutral
-//   ink          #34302A   warm neutral
+//   gold-2    #FAF9F2   page                    (step 2: subtle background)
+//   gold-4    #EAE6DB   navbar and footer band  (step 4: two steps up from the page)
+//   gold-6    #D8D0BF   rules and borders       (step 6: subtle borders)
+//   gold-11   #71624B   muted text              (step 11: low-contrast text)
+//   gold-12   #3B352B   ink                     (step 12: high-contrast text)
+//   brand red #CC0000   links, hovers, buttons
 //
-// cosmo ships a pure #FFFFFF page under a near-white #F8F9FA navbar, which
-// glares and gives the eye nothing to rest on. A warm ground also carries darker
-// ink without harshness, so contrast improves rather than degrades: 12.2:1 here
-// against 11.5:1 on white.
+// The band is tone on tone: the page's own hue, 5.6 points darker in OKLCH
+// lightness. Two steps rather than one, because a one-step tint (gold-3, 2.7
+// points) vanishes on a dim screen; and not three (gold-5, 8.6 points), which
+// reads as a contrasting band again and drops the red hover under AA. To change
+// the band's weight, move both mode files by the same number of steps.
+//
+// Ratios on the page: ink 11.5:1, muted 5.6:1, red 5.6:1. On the band: ink 9.7:1,
+// muted 4.7:1, red 4.7:1. Everything clears the 4.5 AA floor; the green band this
+// replaced (#D3DCBF, August–October 2026) held red at 4.14.
 
-$body-bg:     #FDF6E3;  // sepia page
-$body-color:  #34302A;  // warm near-black
-$navbar-bg:   #D3DCBF;  // brand green band
-$footer-bg:   #D3DCBF;  // matched to the navbar so the page is framed evenly
-$navbar-fg:   #34302A;  // ink on the band — 9.21:1
+$body-bg:              #FAF9F2;  // gold-2
+$body-color:           #3B352B;  // gold-12
+$navbar-bg:            #EAE6DB;  // gold-4
+$footer-bg:            #EAE6DB;  // matched to the navbar so the page is framed evenly
+$navbar-fg:            #3B352B;  // ink on the band — 9.7:1
+$border-color:         #D8D0BF;  // gold-6: h2 rules, the TOC rule, hr
+$body-secondary-color: #71624B;  // gold-11: TOC items, footer text, subtitle, "last updated"
+$text-muted:           #71624B;
 
-// Brand red for body links, so light mode carries the same identity as the dark
-// navbar. 5.46:1 on the sepia page, over the AA floor and level with the 5.58 of
-// cosmo's blue that it replaces. Links stay underlined, so colour is never the
-// only cue.
+// Brand red for body links, so light mode carries the same identity as dark
+// mode's yellow. 5.6:1 on the page, over the AA floor. Links stay underlined, so
+// colour is never the only cue.
 $link-color:  #cc0000;
 
 /*-- scss:rules --*/
 
 // Hover, in brand red. Bootstrap's own derivation shaded $link-color to #8B0000
-// and dropped it to 80% opacity — legible at 5.38, but a fourth red that nobody
-// chose. Pure #CC0000 measures 4.14, under the 4.5 floor, and that is accepted:
-// it is a transient state over a resting colour of 9.21, and the alternative was
-// keeping a colour outside the palette. Mirrors the yellow hover in dark.scss.
+// and dropped it to 80% opacity — legible, but a fourth red that nobody chose.
+// Pure #CC0000 on the gold-4 band measures 4.72, over the 4.5 floor. Mirrors the
+// yellow hover in dark.scss.
 //
 // Placed before the .active rule below so the current page keeps its own colour
 // on hover rather than shifting.
@@ -49,16 +58,11 @@ $link-color:  #cc0000;
 // rule beneath it inherits that same ink via `currentColor` in styles.scss: red
 // and yellow are reserved for links and the email address, never for navigation.
 .navbar .navbar-nav .nav-link.active {
-  color: #34302A;
+  color: #3B352B;
 }
 
-// The footer sits on the same green band, where #CC0000 would drop to 4.14 and
-// fail as text. Ink plus an underline keeps it legible and keeps the palette to
-// three brand colours.
-// Brand red on the green band, measured at 4.14 — under the 4.5 AA floor for
-// text this size. Accepted deliberately: it is one 12px courtesy link in the
-// footer, and the alternatives were a fourth colour or dropping the band. Do not
-// copy this ratio anywhere that carries actual content.
+// The footer's "Quarto" link, brand red on the same gold-4 band: 4.72, over the
+// AA floor. (On the old green band it measured 4.14 and was an accepted shortfall.)
 .nav-footer a {
   color: #cc0000;
 }

@@ -3,31 +3,46 @@
 // Dark-mode palette, layered on top of the `darkly` Bootswatch theme.
 // Light mode is unaffected — it uses `cosmo` plus light.scss.
 //
+// The same Radix Gold steps as light.scss, taken from the dark half of the scale,
+// so the two modes are exact mirrors. The accent is brand yellow; red is not used
+// in dark mode at all.
+//
+//   gold-2       #1B1A17   page
+//   gold-4       #2D2B26   navbar and footer band  (two steps up, 7.2 points lighter)
+//   gold-6       #444039   rules and borders
+//   gold-11      #CBB99F   muted text
+//   gold-12      #E8E2D9   ink
+//   brand yellow #FFD700   links, hovers, buttons
+//
 // Set as SCSS variables rather than CSS overrides so that Bootstrap derives the
 // matching hover, focus and active states from them instead of leaving a stale
 // green or blue behind.
+//
+// Ratios on the page: ink 13.5:1, muted 9.1:1, yellow 12.4:1. On the band: ink
+// 11.0:1, muted 7.4:1, yellow 10.1:1.
 
-$navbar-bg: #cc0000;  // brand red
-$link-color: #ffd700; // brand yellow
+$body-bg:              #1B1A17;  // gold-2
+$navbar-bg:            #2D2B26;  // gold-4
+$footer-bg:            #2D2B26;
+$border-color:         #444039;  // gold-6
+$body-secondary-color: #CBB99F;  // gold-11
+$text-muted:           #CBB99F;
+$link-color:           #ffd700;  // brand yellow
 
-// Not pure white. #FFFFFF on a near-black page measures 15.9:1, far past the 7:1
-// of AAA, and that much contrast makes light type appear to bleed into the dark
-// ground — halation, which is worse for the large share of readers with any
-// astigmatism. A warm off-white lands at 13.7:1: still far above AAA, visibly
-// softer, and it echoes the sepia of light mode rather than introducing a new
-// colour. It also clears the red navbar at 5.05:1, against 5.89 for pure white.
-$body-color: #f2eee4;
-$navbar-fg:  #f2eee4;
+// Not pure white. #FFFFFF on the gold-2 page would measure over 17:1, far past the
+// 7:1 of AAA, and that much contrast makes light type appear to bleed into the
+// dark ground — halation, which is worse for the large share of readers with any
+// astigmatism. Gold-12 lands at 13.5:1: still far above AAA, visibly softer, and
+// the same hue as the page rather than a new colour.
+$body-color: #E8E2D9;
+$navbar-fg:  #E8E2D9;
 
 /*-- scss:rules --*/
 
 // Hover, mirroring what light mode does: the nav item shifts to the accent
 // colour. darkly's default was near-white at 80% opacity, which measured 4.00 —
-// under AA and barely visible as a state change. Brand yellow reads as an actual
-// highlight at 4.20. That is still marginally under the 4.5 floor, but it is an
-// improvement on what it replaces, it is a transient state over a resting colour
-// that measures 5.08, and it keeps the palette to three colours. #FFE97F would
-// clear AA at 4.83 if the ratio ever matters more than the colour.
+// under AA and barely visible as a state change. Brand yellow on the gold-4 band
+// measures 10.1.
 //
 // Placed before the .active rule below so the current page keeps its own colour
 // on hover, as it does in light mode.
@@ -37,8 +52,8 @@ $navbar-fg:  #f2eee4;
 }
 
 // Current-page marker. As in light mode, Bootstrap would tint the active item
-// from $link-color; pinned back so the rule beneath inherits the same off-white
-// via `currentColor`. Yellow stays reserved for links, not navigation.
+// from $link-color; pinned back so the rule beneath inherits the same ink via
+// `currentColor`. Yellow stays reserved for links, not navigation.
 .navbar .navbar-nav .nav-link.active {
-  color: #f2eee4;
+  color: #E8E2D9;
 }

@@ -253,3 +253,68 @@ Three brand colours, no derived shades left in the rendered output. Getting ther
 meant overriding Bootstrap three separate times — it generates its own active
 tint, its own hover shade, and its own search accent, none of which follow
 `$link-color`. **Assume it will invent a colour anywhere you have not pinned one.**
+
+---
+
+## 2026-10-13 — Radix Gold: tone-on-tone bands, two accents, one neutral scale
+
+**Outcome:** both modes rebuilt on one neutral scale, Radix Gold, with the same
+step numbers in each. The green light-mode band and the red dark-mode navbar are
+gone; brand green is retired.
+
+### Why
+
+Stefano asked for a tone-on-tone mood — page and menu as two tones of one hue —
+with brand red as the only accent in light mode and brand yellow as the only
+accent in dark mode, built from palettes that were designed for both modes. Eight
+candidates were mocked on the real pages (Flexoki, Gruvbox, Solarized, Selenized,
+Everforest, Radix Gold, Rosé Pine, Catppuccin). Radix Gold won: warm but near
+neutral, the strongest ink of the warm set, the dark ground closest to the old
+`#222` only warmed, and a documented twelve-step scale in which the same step
+plays the same role in light and dark.
+
+### The mapping
+
+| Role | Step | Light | Dark |
+|---|---|---|---|
+| Page | gold-2 | `#FAF9F2` | `#1B1A17` |
+| Navbar and footer | gold-4 | `#EAE6DB` | `#2D2B26` |
+| Rules and borders | gold-6 | `#D8D0BF` | `#444039` |
+| Muted text | gold-11 | `#71624B` | `#CBB99F` |
+| Ink | gold-12 | `#3B352B` | `#E8E2D9` |
+| Accent | brand | red `#CC0000` | yellow `#FFD700` |
+
+Gold's own solid steps (9 and 10) are never used; the brand colours take that
+role, which is the Radix pattern of a neutral scale plus a separate accent.
+
+### The band's depth, decided from four symmetrical mockups
+
+Page-to-band difference in OKLCH lightness, light / dark, same steps in each:
+
+- no band, hairline only: 0 / 0 — the calmest, and common on academic sites
+- one step (gold-3) plus a hairline: 2.7 / 3.8 — needs the rule to register
+- **two steps (gold-4): 5.6 / 7.2 — chosen.** Reads as a band without a rule
+- three steps (gold-5): 8.6 / 11.2 — a contrasting band again; red hover 4.3
+
+For scale: Bootstrap's default white page under its light navbar is 1.8, the old
+green band was 9.4, the old red dark navbar 27.9. Under about 3 the step can
+vanish on a dim screen and then looks like a fault; above about 9 it stops being
+tone on tone.
+
+### What it fixed
+
+The three accepted contrast shortfalls (red hover on green 4.14, yellow hover on
+red 4.20, footer link 4.14) are gone: red on gold-4 is 4.72, yellow on gold-4 is
+10.1. The ink barely moved — 11.5:1 light, 13.5:1 dark, against 12.2 and 13.7
+before — so the text reads as it did; only the grounds changed.
+
+### Mechanics
+
+Eight variables per mode file: `$body-bg`, `$body-color`, `$navbar-bg`,
+`$footer-bg`, `$navbar-fg`, `$border-color`, `$body-secondary-color` (with
+`$text-muted`), `$link-color`. No page body changed. The CV PDF is untouched
+(black on white) and the favicon too: the red Satt S reads on both grounds.
+
+The mockups were made outside the repo: the built `_site` pages rendered through
+headless Chrome with an override stylesheet injected, then composed into contact
+sheets. Nothing from them is committed.

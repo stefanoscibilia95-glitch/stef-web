@@ -209,25 +209,41 @@ them from `_sources/stef-biblatex.bib`.
 
 ## Design decisions
 
-- **Three brand colours, and no others.** Red `#CC0000`, yellow `#FFD700`, green
-  `#D3DCBF`, plus warm neutrals for ground and ink. Do not introduce a fourth.
-  Bootstrap will try to: it derives its own active-nav tint from `$link-color`
-  (it produced `#8B0000` here), so both mode files pin that back explicitly.
-- **Dark mode**: navbar `#CC0000`, links `#FFD700`, text `#F2EEE4`.
-- **Dark-mode text is not pure white.** `#FFFFFF` on `#222` measures 15.9:1 —
-  more than double AAA — and that much contrast makes light type appear to bleed
-  into the dark ground (halation), which is worse for anyone with astigmatism.
-  `#F2EEE4` gives 13.7:1, still well past AAA, visibly softer, and warm enough to
-  echo the sepia of light mode instead of adding a colour. It clears the red
-  navbar at 5.08:1.
+- **Two accents and one neutral scale, and no others.** Brand red `#CC0000` is
+  the accent in light mode, brand yellow `#FFD700` in dark mode, and every neutral
+  is a step of Radix Gold (chosen October 2026; MIT). Brand green `#D3DCBF` was
+  retired with the green band. Do not introduce another colour. Bootstrap will try
+  to: it derives its own active-nav tint from `$link-color` (it produced `#8B0000`
+  here), so both mode files pin that back explicitly.
+- **The Radix Gold mapping is by step number, the same in both modes.** Page
+  gold-2, navbar and footer gold-4, rules and borders gold-6, muted text gold-11,
+  ink gold-12. Gold's own solid steps (9 and 10) are never used; the brand accents
+  take that role. Light: `#FAF9F2` `#EAE6DB` `#D8D0BF` `#71624B` `#3B352B`. Dark:
+  `#1B1A17` `#2D2B26` `#444039` `#CBB99F` `#E8E2D9`. The full scales are at
+  radix-ui.com/colors; the reasoning is in `_log.md` under 2026-10-13.
+- **Dark mode**: page `#1B1A17`, band `#2D2B26`, text `#E8E2D9`, muted `#CBB99F`,
+  links `#FFD700`. No red anywhere in dark mode; no yellow anywhere in light.
+- **Dark-mode text is not pure white.** `#FFFFFF` on the gold-2 page would measure
+  over 17:1 — more than double AAA — and that much contrast makes light type appear
+  to bleed into the dark ground (halation), which is worse for anyone with
+  astigmatism. Gold-12 `#E8E2D9` gives 13.5:1, still well past AAA, visibly softer,
+  and the same hue as the page instead of a new colour.
 - **Name on the landing page**: Apfel Grotezk Fett (700), mixed case, one line,
   self-hosted (SIL OFL). Mixed case is Stefano's choice (October 2026, when the
   display face changed), and it is what lets the name be large.
 - **Light mode is warm, not white.** cosmo ships `#FFFFFF` under a `#F8F9FA`
-  navbar, which glares. `light.scss` sets the page to a `#FDF6E3` sepia and
-  darkens the ink to `#34302A`. A warm ground carries darker text without
-  harshness, so contrast *improved*: 12.2:1 against the white theme's 11.5:1.
-- **The band is brand green `#D3DCBF`.** A pale near-grey band read as dull.
+  navbar, which glares. `light.scss` sets the page to gold-2 `#FAF9F2`, an ivory,
+  and the ink to gold-12 `#3B352B`, 11.5:1. The sepia `#FDF6E3` (Solarized's base3)
+  was the page from August to October 2026.
+- **The band is tone on tone: gold-4 in both modes, two steps up from the page.**
+  Navbar and footer share it. Two steps — 5.6 points of OKLCH lightness in light,
+  7.2 in dark — is the smallest difference that reads as a deliberate band rather
+  than a rendering fault: one step (gold-3) needs a hairline to register, and three
+  steps (gold-5) is a contrasting band again and drops the red hover under AA.
+  Stefano chose it from four mockups in October 2026. If the band's weight ever
+  changes, move *both* mode files by the same number of steps; the two modes are
+  mirrors by design. Until then the band was brand green `#D3DCBF` in light and
+  brand red in dark.
 - **The current page is marked by a 3px underline in the nav text colour.** Not
   red, not yellow — those are reserved for links and the email address, and using
   them for navigation muddied what an accent means. The rule inherits the item's
@@ -244,14 +260,12 @@ them from `_sources/stef-biblatex.bib`.
   citations and the TOC are Ronzino. The test is whether you *scan* it or *read*
   it. This is also why the navbar is not the body face — a nav row set in the
   reading face reads as a sentence rather than a set of destinations.
-- **Three accepted contrast shortfalls, all deliberate.** Both navbar hovers
-  (brand red on green, 4.14; brand yellow on red, 4.20) and the footer's "Quarto"
-  link (4.14) sit under the 4.5 floor. Each was a choice between the exact brand
-  colour and a derived shade nobody picked — Bootstrap wanted `#8B0000` for the
-  light hover and near-white for the dark one. The colour won because these are
-  transient or incidental: hovers sit over resting colours of 9.21 and 5.08, and
-  the footer is one 12px courtesy link. The dark hover also *improves* on
-  darkly's default, which measured 4.00. **Never reuse these ratios for content.**
+- **No accepted contrast shortfalls remain.** On the gold-4 band, brand red
+  measures 4.72 (the light nav hover and the footer's "Quarto" link) and brand
+  yellow 10.1 (the dark hover); everything on the site clears the 4.5 floor. The
+  green band had carried three deliberate shortfalls (4.14, 4.20, 4.14), recorded
+  in `_log.md`. Bootstrap still wants `#8B0000` for the light hover and near-white
+  for the dark one; both mode files pin the brand colour instead.
 - **Two typefaces, both self-hosted, and no others.** Apfel Grotezk for the name,
   the headings and the navbar, Ronzino for everything else; both by Collletttivo,
   SIL OFL. They replaced Jost and Source Serif 4 in October 2026 (Mattone was tried
