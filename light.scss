@@ -55,10 +55,11 @@ $link-color:  #cc0000;
 
 // Current-page marker. Bootstrap derives its own active colour from $link-color
 // (#8B0000 here), which is a red nobody chose, so the text is pinned to ink. The
-// rule beneath it inherits that same ink via `currentColor` in styles.scss: red
-// and yellow are reserved for links and the email address, never for navigation.
+// 3px rule beneath it is brand red: 4.72 on the band, over the 3:1 a graphical
+// element needs. A literal, not var(--bs-link-color) — see styles.scss for why.
 .navbar .navbar-nav .nav-link.active {
   color: #3B352B;
+  border-bottom-color: #cc0000;
 }
 
 // The footer's "Quarto" link, brand red on the same gold-4 band: 4.72, over the

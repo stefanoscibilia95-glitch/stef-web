@@ -194,6 +194,13 @@ break the compile. Quarto shifts heading levels down by one for Typst, so `##` i
 level 1 there. And a show rule on `terms.item` overrides Quarto's default; a rule on
 the parent `terms` silently does not.
 
+**The navbar is `data-bs-theme="dark"` in both modes.** Quarto sets that attribute
+on the `<nav>` regardless of the band's colour, and inside it Bootstrap redefines
+`--bs-link-color` (and the other `--bs-*` colour variables) from its dark block, a
+tinted blue nobody chose. So `var(--bs-link-color)` is wrong exactly inside the
+navbar: the active underline came out blue when it was tried. Anything coloured
+inside the navbar is a literal in `light.scss` / `dark.scss`.
+
 **Quarto specificity.** Quarto's own rules often carry an element qualifier
 (`div.quarto-about-trestles .about-entity`). A classes-only override silently loses.
 Match the qualifier.
@@ -222,7 +229,8 @@ them from `_sources/stef-biblatex.bib`.
   `#1B1A17` `#2D2B26` `#444039` `#CBB99F` `#E8E2D9`. The full scales are at
   radix-ui.com/colors; the reasoning is in `_log.md` under 2026-10-13.
 - **Dark mode**: page `#1B1A17`, band `#2D2B26`, text `#E8E2D9`, muted `#CBB99F`,
-  links `#FFD700`. No red anywhere in dark mode; no yellow anywhere in light.
+  links and the nav underline `#FFD700`. No red anywhere in dark mode; no yellow
+  anywhere in light.
 - **Dark-mode text is not pure white.** `#FFFFFF` on the gold-2 page would measure
   over 17:1 — more than double AAA — and that much contrast makes light type appear
   to bleed into the dark ground (halation), which is worse for anyone with
@@ -244,14 +252,15 @@ them from `_sources/stef-biblatex.bib`.
   changes, move *both* mode files by the same number of steps; the two modes are
   mirrors by design. Until then the band was brand green `#D3DCBF` in light and
   brand red in dark.
-- **The current page is marked by a 3px underline in the nav text colour.** Not
-  red, not yellow — those are reserved for links and the email address, and using
-  them for navigation muddied what an accent means. The rule inherits the item's
-  own colour via `currentColor`, so it costs no colour at all. It also satisfies
-  WCAG 1.4.1: state is not signalled by colour alone. Inactive items carry a
-  transparent border of the same width so nothing shifts. Note Bootstrap derives
-  its own active tint from `$link-color` (it produced `#8B0000` here), so both
-  mode files pin the active text back explicitly.
+- **The current page is marked by a 3px underline in the accent colour**: brand
+  red in light, brand yellow in dark, set as a literal in each mode file next to
+  the hover rule (not as `var(--bs-link-color)`; see the navbar trap under "Things
+  that will bite you"). The text itself stays ink, pinned in the same files because
+  Bootstrap would tint it from `$link-color` (it produced `#8B0000` here). An underline is a graphical element and needs 3:1,
+  not 4.5:1: red on the band measures 4.72, yellow 10.1. The state is still a
+  shape, not colour alone, so WCAG 1.4.1 holds. Inactive items carry a transparent
+  border of the same width so nothing shifts. The rule was `currentColor` from
+  August to October 2026; Stefano asked for the accent back on 13 October 2026.
 - **The navbar is set in Apfel Grotezk Mittel (500), like the headings.** Only
   Mittel (500) and Fett (700) are shipped; any other weight is browser-faked, so
   do not ask for one.

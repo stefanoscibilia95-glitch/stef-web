@@ -318,3 +318,14 @@ Eight variables per mode file: `$body-bg`, `$body-color`, `$navbar-bg`,
 The mockups were made outside the repo: the built `_site` pages rendered through
 headless Chrome with an override stylesheet injected, then composed into contact
 sheets. Nothing from them is committed.
+
+### Same day — the nav underline goes back to the accent
+
+Stefano asked for the current-page rule in brand red (light) and brand yellow
+(dark) rather than the ink. First attempt was one rule in `styles.scss`,
+`border-bottom-color: var(--bs-link-color)` — and it rendered **blue**: Quarto
+gives the navbar `data-bs-theme="dark"` in both modes, and Bootstrap's dark block
+redefines `--bs-link-color` to a tinted blue inside it. So the colour is a literal
+in each mode file, beside the hover rule; the item's text stays ink. As a graphical element it needs 3:1: 4.72 and 10.1 on the
+gold-4 band. It had been `currentColor` since August, when the brand colours were
+reserved for links; on the tone-on-tone band there is room for one accent.

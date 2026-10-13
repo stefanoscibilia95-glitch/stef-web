@@ -52,8 +52,9 @@ $navbar-fg:  #E8E2D9;
 }
 
 // Current-page marker. As in light mode, Bootstrap would tint the active item
-// from $link-color; pinned back so the rule beneath inherits the same ink via
-// `currentColor`. Yellow stays reserved for links, not navigation.
+// from $link-color; pinned back to ink. The 3px rule beneath it is brand yellow:
+// 10.1 on the band. A literal, not var(--bs-link-color) — see styles.scss for why.
 .navbar .navbar-nav .nav-link.active {
   color: #E8E2D9;
+  border-bottom-color: #ffd700;
 }
