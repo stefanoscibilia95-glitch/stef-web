@@ -252,7 +252,7 @@ them from `_sources/stef-biblatex.bib`.
   changes, move *both* mode files by the same number of steps; the two modes are
   mirrors by design. Until then the band was brand green `#D3DCBF` in light and
   brand red in dark.
-- **The current page is marked by a 3px underline in the accent colour**: brand
+- **The current page is marked by a 2px underline in the accent colour**: brand
   red in light, brand yellow in dark, set as a literal in each mode file next to
   the hover rule (not as `var(--bs-link-color)`; see the navbar trap under "Things
   that will bite you"). The text itself stays ink, pinned in the same files because

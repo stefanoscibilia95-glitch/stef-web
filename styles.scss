@@ -354,11 +354,11 @@ div.quarto-about-trestles .about-entity .about-link:hover {
   font-family: $headings-font-family;
   font-weight: 500;
   letter-spacing: 0.01em;
-  border-bottom: 3px solid transparent;
+  border-bottom: 2px solid transparent;
   padding-bottom: 0.15rem;
 }
 
-/* The current page is marked by a 3px rule beneath the item, in the accent of the
+/* The current page is marked by a 2px rule beneath the item, in the accent of the
    mode: brand red in light, brand yellow in dark. The colour is set in light.scss
    and dark.scss as a literal, next to the hover rules, and deliberately not as
    `var(--bs-link-color)`: Quarto renders the navbar with data-bs-theme="dark" in

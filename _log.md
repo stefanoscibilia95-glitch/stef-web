@@ -329,3 +329,11 @@ redefines `--bs-link-color` to a tinted blue inside it. So the colour is a liter
 in each mode file, beside the hover rule; the item's text stays ink. As a graphical element it needs 3:1: 4.72 and 10.1 on the
 gold-4 band. It had been `currentColor` since August, when the brand colours were
 reserved for links; on the tone-on-tone band there is room for one accent.
+
+Two follow-ups the same afternoon. The rule went from 3px to 2px at Stefano's
+request. And a false alarm worth recording: right after the deploy the underline
+seemed to work on two pages only. The live HTML and CSS were correct on every
+page; the other pages were his browser's cached copies from the previous deploy.
+GitHub Pages serves HTML and CSS with `cache-control: max-age=600`, so for ten
+minutes after a push a page you have already opened can show the previous build.
+Hard-reload, or wait.
