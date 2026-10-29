@@ -32,3 +32,8 @@ SS_Academic_CV_*.zip
 # The application CV profile (phone number, referees) and its output folder.
 /_quarto-application.yml
 /_application/
+
+# Office templates (PowerPoint, Word) derived from the site design, plus the
+# Erasmus-branded deck. Kept local: the repo is public and the files carry
+# university branding. Installed copies live in Office's personal templates.
+_templates/
