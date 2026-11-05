@@ -6,7 +6,7 @@ pagetitle: "Curriculum vitae"
 # `date` is the "Last updated" stamp: it prints under the PDF button here, in the PDF
 # footer, and it names the PDF file (yy-mm-dd-scibilia-cv.pdf, see _cv/name-pdf.sh).
 # Change it when you change the CV.
-date: 2026-10-06
+date: 2026-11-05
 date-format: "MMMM YYYY"
 # Search-engine snippet and social-card text. Kept as raw metadata rather than a
 # `description:` key, because that key ALSO prints on the page as a visible
