@@ -12,7 +12,11 @@ include-in-header:
       <meta name="description" content="Work currently under review, conference papers, peer-reviews, and methods training by Stefano Scibilia, PhD candidate in political science at Erasmus University Rotterdam.">
 ---
 
-## Papers under review
+## Forthcoming and under review
+
+### Forthcoming
+
+- **Scibilia, S.,** and Haverland, M. (forthcoming). *The RRF and social policy*. In Copeland, P., and Schreurs, S. (eds.), Research Handbook on the EU and Social Policy. Edward Elgar.
 
 ### 2026
 
